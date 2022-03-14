@@ -1,11 +1,12 @@
 import "./App.css";
-import {Products} from "./Pages/Products"
+import {Nav} from "./Pages/Nav"
+import {LandingPage} from "./Pages/LandingPage"
 
 function App() {
   return (
     <div>
-      <Products/>
-
+      <Nav/>
+      <LandingPage/>
     </div>
   );
 }
