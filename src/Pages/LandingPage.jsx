@@ -1,4 +1,7 @@
+import {FeaturedProduct} from '../Components/Products/featured-product';
 import '../Styles/landing-page.css';
+import '../Styles/product.css';
+
 
 function LandingPage() {
   return (
@@ -55,98 +58,8 @@ function LandingPage() {
 </header>
 
 
-{/* Featured Products Container */}
-<div className="featured-product-container">
-    <div className="card flex-card">
-
-        <div className="column">
-            <div className="card-header">
-                <span className="ecom-badge">New Arrival</span>
-
-                <img height="150px" width="100%" loading="lazy"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT33FM3HNQdARhUhRtY6VbilKbxutND1ZEjFg&usqp=CAU"  alt="product-img" />
-
-            </div>
-        </div>
-        <div className="column">
-            <div className="card-body">
-                <h3 className="card-heading">Artist Made Collection</h3>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, magnam.</p>
-                <br/>
-                <a href="/product/product.html" className="btn btn-primary-outline"> Go to Product </a>
-
-            </div>
-        </div>
-    </div>
-
-    <div className="card flex-card">
-
-       <div className="column">
-            <div className="card-header">
-                <span className="ecom-badge">New Arrival</span>
-
-                <img height="150px" width="100%" loading="lazy"
-                    src="https://www.kpoppost.com/wp-content/uploads/2021/06/Peaches-and-cream.jpg"  alt="product-img" />
-
-            </div>
-        </div>
-        <div className="column">
-            <div className="card-body">
-                <h3 className="card-heading">BTS Butter</h3>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, magnam.</p>
-                <br/>
-                <a href="/product/product.html" className="btn btn-primary-outline"> Go to Product </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-    <div className="featured-product-container">
-        <div className="card flex-card">
-
-            <div className="column">
-                <div className="card-header">
-                    <span className="ecom-badge">New Arrival</span>
-
-                    <img height="150px" width="100%" loading="lazy"
-                        src="https://assets.bandwagon.asia/system/tinymce/image/file/3508/content_mceu_33223121511629985758407.jpg"  alt="product-img"/>
-
-                </div>
-            </div>
-            <div className="column">
-                <div className="card-body">
-                    <h3 className="card-heading">BlackPink LaLisa</h3>
-                    <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, magnam.</p>
-                    <br/>
-                    <a href="/product/product.html" className="btn btn-primary-outline"> Go to Product </a>
-                </div>
-            </div>
-        </div>
-
-        <div className="card flex-card">
-
-            <div className="column">
-                <div className="card-header">
-                    <span className="ecom-badge">New Arrival</span>
-
-                    <img height="150px" width="100%"  loading="lazy"
-                        src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/3fea9a105704851.5f8fa5155d30e.jpg"  alt="product-img" />
-
-                </div>
-            </div>
-            <div className="column">
-                <div className="card-body">
-                    <h3 className="card-heading">TXT The Dream Chapter</h3>
-                    <p className="card-text">Lorem ipsum dolor sit amet Lorem, ipsum dolor.</p>
-                    <br/>
-                    <a href="/product/product.html" className="btn btn-primary-outline"> Go to Product </a>
-                </div>
-            </div>
-        </div>
-
-
-</div>
+{/*Featured product  */}
+<FeaturedProduct/>
 
 </>
   );
