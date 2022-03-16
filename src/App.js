@@ -13,10 +13,11 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/mock-api" element={<MockAPI />} />
+      <Route path="/mock-api" element={<MockAPI />} />
+
+        <Route path="/" element={<LandingPage/>} />
       </Routes>
       <Nav/>
-      <LandingPage/>
     </div>
   );
 }
