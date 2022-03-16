@@ -197,6 +197,7 @@ header p {
 .featured-product-container {
     margin:2rem auto;
     max-width: 1550px;
+    text-align: center;
 }
 
 .mt-top {
