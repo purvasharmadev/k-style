@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import { Product } from '../../Pages/Product';
 
 
 function FeaturedProduct(){
@@ -32,6 +33,8 @@ function FeaturedProduct(){
     return (
         <div className='featured-product-container'>
 
+
+
         <h2 className='m-head'>Featured Products</h2>
         
         {/* loader */}
@@ -44,24 +47,16 @@ function FeaturedProduct(){
         featuredProducts && featuredProducts
         .filter(item => item.featured)
         .map(item => 
-            <div key={item.id} class="card ecom-card">
-            <div class="card-header position-relative">
-                <span class="card-badge"> ❤ </span>
-                <span class="ecom-badge"> New Arrival </span>
-                 <img height="268px" width="268px" loading="lazy"
-                    src={item.img} alt="productImg" />
-                <span class="category">{item.categoryName}</span>
-            </div>
-            <div class="card-body">
-                <h3 class="card-heading">{item.title}</h3>
-                <p class="card-text">
-                    {item.price} <span class="ecom-card-price">Rs. 2999</span> 
-                </p>
-            </div>
-            <div class="card-footer">
-                <a href="/cart-management/cart.html" class="btn btn-primary">Add To Cart</a>
-            </div>
-        </div>
+
+          <Product 
+          key={item.id}
+          img={item.img}
+          categoryName = {item.categoryName}
+          title = {item.title}
+          price = {item.price}
+          oldPrice = {item.oldPrice}
+          />
+
 
             )
       }</div>

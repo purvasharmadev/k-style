@@ -10,7 +10,8 @@ export const products = [
     _id: uuid(),
     title: "You Can WIN",
     author: "Shiv Khera",
-    price: "5000",
+    price: "1999",
+    oldPrice:"5000",
     featured:true,
     categoryName: "non-fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
@@ -19,7 +20,8 @@ export const products = [
     _id: uuid(),
     title: "You Can WIN",
     author: "Shiv Khera",
-    price: "5000",
+    price: "4000",
+    oldPrice:"5000",
     featured:true,
     categoryName: "non-fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
@@ -28,7 +30,8 @@ export const products = [
     _id: uuid(),
     title: "You Can WIN",
     author: "Shiv Khera",
-    price: "5000",
+    price: "1999",
+    oldPrice:"5000",
     featured:true,
     categoryName: "non-fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
@@ -37,7 +40,8 @@ export const products = [
     _id: uuid(),
     title: "You Can WIN",
     author: "Shiv Khera",
-    price: "5000",
+    price: "1999",
+    oldPrice:"5000",
     featured:true,
     categoryName: "non-fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
