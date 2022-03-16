@@ -44,7 +44,7 @@ function FeaturedProduct(){
         featuredProducts && featuredProducts
         .filter(item => item.featured)
         .map(item => 
-            <div class="card ecom-card">
+            <div key={item.id} class="card ecom-card">
             <div class="card-header position-relative">
                 <span class="card-badge"> ❤ </span>
                 <span class="ecom-badge"> New Arrival </span>
