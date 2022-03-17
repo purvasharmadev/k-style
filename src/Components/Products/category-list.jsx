@@ -30,9 +30,9 @@ function CategoryList() {
   return (
     <>
       <div className="container m-auto">
-        <h1 className="m-head text-center">Categories</h1>
+        <h2 className="m-head text-center">Categories</h2>
         {/* Loader */}
-        {loader && <h2 className="text-center">Loading.....</h2>}
+        {loader && <div style={{height:"21.875rem"}} className="flex flex-space-center align-item-center container bold color-primary text-normal">Loading.....</div>}
         <div className="product-container">
           {/* category */}
           {categories &&
