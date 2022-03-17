@@ -1,4 +1,5 @@
 import {FeaturedProduct} from '../Components/Products/featured-product';
+import { CategoryList } from '../Components/Products/category-list';
 import '../Styles/landing-page.css';
 import '../Styles/product.css';
 
@@ -57,6 +58,8 @@ function LandingPage() {
     </div>
 </header>
 
+{/* Category */}
+<CategoryList/>
 
 {/*Featured product  */}
 <FeaturedProduct/>
