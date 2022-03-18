@@ -1,213 +1,224 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    --PRIMARY-COLOR: #86198f;
-    --SECONDARY-COLOR: #a855f7;
-    --BACKGROUND-COLOR: #e5e7eb;
-    --TEXT-COLOR: white;
-    --GRAY-COLOR:#374151;
-    --MAIN-FONT: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --PRIMARY-COLOR: #86198f;
+  --SECONDARY-COLOR: #a855f7;
+  --BACKGROUND-COLOR: #e5e7eb;
+  --TEXT-COLOR: white;
+  --GRAY-COLOR: #374151;
+  --MAIN-FONT: "Montserrat", sans-serif;
 }
 
 /* NAVBAR */
 nav {
-    background: var(--BACKGROUND-COLOR);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 2rem 0rem;
-    height: 4rem;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 2;
+  background: var(--BACKGROUND-COLOR);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem 0rem;
+  height: 4rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 
 .nav-brand {
-    margin: 0 1rem;
-    text-shadow: 0px 0px 5px var(--BACKGROUND-COLOR);
-    font-weight: 400;
-    font-size: 1.5rem;
-    color: var(--PRIMARY-COLOR);
-    padding: 0;
+  margin: 0 1rem;
+  text-shadow: 0px 0px 5px var(--BACKGROUND-COLOR);
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--PRIMARY-COLOR);
+  padding: 0;
 }
 
 .nav-list {
-    margin: 0 1rem;
-    padding: 0rem;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4rem;
-    flex-wrap: wrap;
+  margin: 0 1rem;
+  padding: 0rem;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  flex-wrap: wrap;
 }
 
 .nav-list input {
-    width: 135%;
-    /* color: var(--TEXT-COLOR); */
-    border: 1px solid var(--PRIMARY-COLOR);
+  width: 135%;
+  /* color: var(--TEXT-COLOR); */
+  border: 1px solid var(--PRIMARY-COLOR);
 }
 
 /* Search Icon inside Input field */
 .icon {
-    padding-left: 2rem;
-    background: url("https://www.investate.com.au/wp-content/plugins/helpie-faq//assets/img/search-icon.png") no-repeat left;
-    background-size: 2rem;
+  padding-left: 2rem;
+  background: url("https://www.investate.com.au/wp-content/plugins/helpie-faq//assets/img/search-icon.png")
+    no-repeat left;
+  background-size: 2rem;
 }
 
 .nav-link {
-    color: var(--TEXT-COLOR);
+  color: var(--TEXT-COLOR);
 }
 
 .nav-item {
-    padding: 0rem 1rem;
+  padding: 0rem 1rem;
 }
 
 .nav-item .link {
-    color: var(--PRIMARY-COLOR);
-    border-bottom: none;
+  color: var(--PRIMARY-COLOR);
+  border-bottom: none;
 }
 
-.nav-item .avatar.avatar-sm{
-    border: 2px solid var(--PRIMARY-COLOR);
-    cursor: pointer;
-    height: 2.813rem;
-    width: 2.813rem;
+.nav-item .avatar.avatar-sm {
+  border: 2px solid var(--PRIMARY-COLOR);
+  cursor: pointer;
+  height: 2.813rem;
+  width: 2.813rem;
 }
 
 .btn {
-    border-radius: 1px;
+  border-radius: 1px;
 }
 
 .btn:hover {
-    background-color: var(--SECONDARY-COLOR)
+  background-color: var(--SECONDARY-COLOR);
 }
 
 /* Logout button */
-.tooltip .tooltip-text{
-    visibility: hidden;
-    width: 7rem;
-    background-color: var(--SECONDARY-COLOR);
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -3.5rem;
-    z-index: 1;
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 7rem;
+  background-color: var(--SECONDARY-COLOR);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -3.5rem;
+  z-index: 1;
 }
 
-.tooltip:hover .tooltip-text{
-    visibility: visible;
+.tooltip:hover .tooltip-text {
+  visibility: visible;
 }
 
 .tooltip .tooltip-text::after {
-    content: " ";
-    position: absolute;
-    bottom: 100%; 
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent var(--SECONDARY-COLOR) transparent;
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--SECONDARY-COLOR) transparent;
 }
 
 .badge {
-    font-size: 1.5rem;
-    color: var(--PRIMARY-COLOR);
-    padding: 10px;
+  font-size: 1.5rem;
+  color: var(--PRIMARY-COLOR);
+  padding: 10px;
 }
 
 .badge-circle {
-    padding: 5px;
+  padding: 5px;
 }
 
 .badge-right {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 /* Header */
 
 header {
-    background-image: linear-gradient(10deg, var(--SECONDARY-COLOR), rgba(0, 0, 0, 0.178)), url("https://variety.com/wp-content/uploads/2021/05/BTS_Butter-photo.jpg");
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    max-inline-size: 100%;
-    position: relative;
-    text-align: center;
-    margin: auto;
+  background-image: linear-gradient(
+      10deg,
+      var(--SECONDARY-COLOR),
+      rgba(0, 0, 0, 0.178)
+    ),
+    url("https://variety.com/wp-content/uploads/2021/05/BTS_Butter-photo.jpg");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-inline-size: 100%;
+  position: relative;
+  text-align: center;
+  margin: auto;
 }
 
 header div {
-    position: absolute;
-    top: 30%;
-    left: 25%;
-    text-align: center;
-    color: var(--TEXT-COLOR);
-    letter-spacing: 5px;
-    padding: 2rem;
-    font-weight: 800;
-    width: 50%;
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  text-align: center;
+  color: var(--TEXT-COLOR);
+  letter-spacing: 5px;
+  padding: 2rem;
+  font-weight: 800;
+  width: 50%;
 }
 
 header h1 {
-    color: var(--PRIMARY-COLOR);
-    text-shadow: 1px 1px 5px var(--TEXT-COLOR);
+  color: var(--PRIMARY-COLOR);
+  text-shadow: 1px 1px 5px var(--TEXT-COLOR);
 }
 
 header p {
-    line-height: 1rem;
-    padding: 1rem;
-    text-shadow: 1px 1px 5px var(--SECONDARY-COLOR);
-
+  line-height: 1rem;
+  padding: 1rem;
+  text-shadow: 1px 1px 5px var(--SECONDARY-COLOR);
 }
 
+footer {
+  background-color: var(--GRAY-COLOR);
+  height: 9.375rem;
+}
+footer div {
+  height: 6.25rem;
+}
 
 .banner-container {
-    margin: 4rem auto 0;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    flex: 1;
+  margin: 4rem auto 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  flex: 1;
 }
 
 .banner-container .card {
-    margin: 10px;
-    height: 8rem;
-    width: auto;
+  margin: 10px;
+  height: 8rem;
+  width: auto;
 }
 
 .card-overlay .card-body {
-    background: none;
-    padding: 0;
+  background: none;
+  padding: 0;
 }
 
 .card-overlay .card-text {
-    background-color: var(--BACKGROUND-COLOR);
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-    opacity: 0.8;
+  background-color: var(--BACKGROUND-COLOR);
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .featured-product-container {
-    margin:2rem auto;
-    max-width: 1550px;
-    text-align: center;
+  margin: 2rem auto;
+  max-width: 1550px;
+  text-align: center;
 }
 
 .mt-top {
-    margin-top: 4rem;
+  margin-top: 4rem;
 }
 
 
-@media (max-width:600px) {
-    nav {
-        display: none;
-    }
-
+@media (max-width: 600px) {
+  nav {
+    display: none;
+  }
 }
