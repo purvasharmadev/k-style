@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 import "../Styles/home-page.css";
 
 function Nav() {
@@ -6,9 +8,9 @@ function Nav() {
       <nav id="top">
         <ul className="nav-list">
           <li className="nav-item nav-brand">
-            <a href="/index.html" className="nav-link link">
+            <Link to="/" className="nav-link link">
               KStyle
-            </a>
+            </Link>
           </li>
         </ul>
         <ul className="nav-list">

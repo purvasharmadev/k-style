@@ -1,22 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return ( 
         <>
               <footer>
         <div className="flex flex-space-evenly align-item-center flex-wrap">
-          <a href="#" className="nav-link link">
+          <Link to="/" className="nav-link link">
             Home
-          </a>
-          <a href="#" className="nav-link link">
+          </Link>
+          <Link to="/product" className="nav-link link">
             Shop
-          </a>
-          <a href="#" className="nav-link link">
+          </Link>
+          <Link to="/login" className="nav-link link">
             Login / Signup
-          </a>
-          <a href="#" className="nav-link link">
+          </Link>
+          <Link to="/" className="nav-link link">
             Featured Products
-          </a>
+          </Link>
 
           <p className="text-center color-white">
             Follow us on :
