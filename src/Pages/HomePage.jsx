@@ -8,6 +8,7 @@ import "../Styles/product.css";
 // Import Components
 import { FeaturedProduct } from "../Components/Products/featured-product";
 import { CategoryList } from "../Components/Products/category-list";
+import { Banner } from "./Banner";
 import { Nav } from "../Pages/Nav";
 import { Footer } from "../Pages/Footer";
 
@@ -19,56 +20,26 @@ function HomePage() {
 
       {/* Group Banners */}
       <div className="banner-container">
-        <div className="card card-overlay">
-          <img
-            className="img-responsive"
-            src="https://variety.com/wp-content/uploads/2021/05/BTS_Butter-photo.jpg"
-            alt="img-bts"
-          />
-          <div className="card-body">
-            <h1 className="card-text">BTS</h1>
-          </div>
-        </div>
-        <div className="card card-overlay">
-          <img
-            className="img-responsive"
-            src="https://wallpaperaccess.com/full/1099609.jpg"
-            alt="img-bp"
-          />
-          <div className="card-body">
-            <h1 className="card-text">BlankPink</h1>
-          </div>
-        </div>
-        <div className="card card-overlay">
-          <img
-            className="img-responsive"
-            src="https://img.wallpapersafari.com/desktop/1536/864/43/71/eqZVlb.jpg"
-            alt="img-exo"
-          />
-          <div className="card-body">
-            <h1 className="card-text">EXO</h1>
-          </div>
-        </div>
-        <div className="card card-overlay">
-          <img
-            className="img-responsive"
-            src="https://pm1.narvii.com/7243/709ad04f96d04955409a35178eb0d045a6c5054cr1-1080-682v2_hq.jpg"
-            alt="img-twice"
-          />
-          <div className="card-body">
-            <h1 className="card-text">TWICE</h1>
-          </div>
-        </div>
-        <div className="card card-overlay">
-          <img
-            className="img-responsive"
-            src="https://thehoneypop.com/wp-content/uploads/2020/04/txtfeature7.jpg"
-            alt="img-txt"
-          />
-          <div className="card-body">
-            <h1 className="card-text">TXT</h1>
-          </div>
-        </div>
+        <Banner
+          groupName="BTS"
+          groupImg="https://variety.com/wp-content/uploads/2021/05/BTS_Butter-photo.jpg"
+        />
+        <Banner
+          groupName="BLANKPINK"
+          groupImg="https://wallpaperaccess.com/full/1099609.jpg"
+        />
+        <Banner
+          groupName="EXO"
+          groupImg="https://img.wallpapersafari.com/desktop/1536/864/43/71/eqZVlb.jpg"
+        />
+        <Banner
+          groupName="TWICE"
+          groupImg="https://pm1.narvii.com/7243/709ad04f96d04955409a35178eb0d045a6c5054cr1-1080-682v2_hq.jpg"
+        />
+        <Banner
+          groupName="TXT"
+          groupImg="https://thehoneypop.com/wp-content/uploads/2020/04/txtfeature7.jpg"
+        />
       </div>
 
       {/* Header */}
