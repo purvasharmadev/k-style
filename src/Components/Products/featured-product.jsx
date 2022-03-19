@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ProductCard } from "../Card";
+import { ProductCard } from "../../Pages/ProductCard";
 
 function FeaturedProduct() {
   // useState for products
@@ -31,8 +31,8 @@ function FeaturedProduct() {
     <div className="featured-product-container">
       <h2 className="m-head">Featured Products</h2>
 
-      {/* loader */}
-      {loader && <h2>Loading.....</h2>}
+        {/* Loader */}
+        {loader && <div style={{height:"21.875rem"}} className="flex flex-space-center align-item-center container bold color-primary text-normal">Loading.....</div>}
 
       {/* products */}
       <div class="product-container m-1">
@@ -47,6 +47,7 @@ function FeaturedProduct() {
                 title={item.title}
                 price={item.price}
                 oldPrice={item.oldPrice}
+                newArrival={item.newArrival}
               />
             ))}
       </div>

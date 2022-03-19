@@ -13,6 +13,7 @@ export const products = [
     price: "1999",
     oldPrice:"5000",
     featured:true,
+    newArrival:false,
     categoryName: "non-fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
@@ -23,6 +24,7 @@ export const products = [
     price: "4000",
     oldPrice:"5000",
     featured:true,
+    newArrival:false,
     categoryName: "non-fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
@@ -33,6 +35,7 @@ export const products = [
     price: "1999",
     oldPrice:"5000",
     featured:true,
+    newArrival:true,
     categoryName: "non-fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
@@ -43,6 +46,8 @@ export const products = [
     price: "1999",
     oldPrice:"5000",
     featured:true,
+    newArrival:true,
+
     categoryName: "non-fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
@@ -52,6 +57,8 @@ export const products = [
     author: "Shiv Khera",
     price: "5000",
     featured:true,
+    newArrival:true,
+
     categoryName: "non-fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
@@ -62,6 +69,7 @@ export const products = [
     author: "Junaid Qureshi",
     price: "3000",
     featured:true,
+    newArrival:false,
     categoryName: "horror",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
@@ -71,6 +79,7 @@ export const products = [
     author: "Shiv Khera",
     price: "1000",
     featured:false,
+    newArrival:true,
     categoryName: "fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
@@ -80,6 +89,7 @@ export const products = [
     author: "Shiv Khera",
     price: "1000",
     featured:false,
+    newArrival:true,
     categoryName: "fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
@@ -89,6 +99,7 @@ export const products = [
     author: "Shiv Khera",
     price: "1000",
     featured:true,
+    newArrival:false,
     categoryName: "fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
@@ -98,6 +109,7 @@ export const products = [
     author: "Shiv Khera",
     price: "1000",
     featured:true,
+    newArrival:false,
     categoryName: "fiction",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
