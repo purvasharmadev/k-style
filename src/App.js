@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import MockAPI from "./mockman";
 import {Nav} from "./Pages/Nav";
-import {LandingPage} from "./Pages/LandingPage";
+import {HomePage} from "./Pages/HomePage";
 import {Product} from "./Pages/Product";
 
 function App() {
@@ -15,9 +15,8 @@ function App() {
     <div>
       <Routes>
       <Route path="/mock-api" element={<MockAPI />} />
-      <Route path="/" element={<LandingPage/>} />
+      <Route path="/" element={<HomePage/>} />
       </Routes>
-      <Nav/>
     </div>
   );
 }

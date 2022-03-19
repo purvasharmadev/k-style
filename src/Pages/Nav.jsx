@@ -1,4 +1,4 @@
-import "../Styles//landing-page.css";
+import "../Styles/home-page.css";
 
 function Nav() {
   return (
