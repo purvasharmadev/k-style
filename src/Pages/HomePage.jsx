@@ -1,16 +1,22 @@
-import { FeaturedProduct } from "../Components/Products/featured-product";
-import { CategoryList } from "../Components/Products/category-list";
-import {Nav} from "../Pages/Nav";
-import {Footer} from "../Pages/Footer";
+// Import routes
+import { Link } from "react-router-dom";
 
+// Import styles
 import "../Styles/home-page.css";
 import "../Styles/product.css";
+
+// Import Components
+import { FeaturedProduct } from "../Components/Products/featured-product";
+import { CategoryList } from "../Components/Products/category-list";
+import { Nav } from "../Pages/Nav";
+import { Footer } from "../Pages/Footer";
 
 function HomePage() {
   return (
     <>
-    {/* NavBar */}
-    <Nav/>
+      {/* NavBar */}
+      <Nav />
+
       {/* Group Banners */}
       <div className="banner-container">
         <div className="card card-overlay">
@@ -77,10 +83,10 @@ function HomePage() {
             </a>
           </button>
           <button className="btn btn-secondary nav-link">
-            <a href="/product/product.html" className="nav-link link">
+            <Link to="/product" className="nav-link link">
               {" "}
               Shop
-            </a>
+            </Link>
           </button>
         </div>
       </header>
@@ -92,7 +98,7 @@ function HomePage() {
       <FeaturedProduct />
 
       {/* Footer */}
-      <Footer/>
+      <Footer />
     </>
   );
 }
