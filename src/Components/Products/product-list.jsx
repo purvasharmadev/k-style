@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { ProductCard } from "../../Pages/ProductCard";
 import { useGetProducts } from "../../Hooks/useGetProducts";
+import { Loader } from "../Loader/loader";
+import {ErrorMsg} from "../Error/error-msg"
 
 function ProductList() {
-  const { loader, Products } = useGetProducts();
+  const { loader, Products, errorMsg } = useGetProducts();
 
   return (
     <>
       {/* Loader */}
-      {loader && (
-        <div
-          style={{ height: "21.875rem" }}
-          className="flex flex-space-center align-item-center container bold color-primary text-normal"
-        >
-          Loading.....
-        </div>
-      )}
+      {loader && <Loader/>}
+
+
 
       {/* products */}
       <div class="product-container m-1">
@@ -32,6 +29,8 @@ function ProductList() {
             />
           ))}
       </div>
+            {/* Error */}
+            {errorMsg && <ErrorMsg msg="Something is Wrong!! Please Try Again!"/>}
     </>
   );
 }
