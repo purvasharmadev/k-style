@@ -1,29 +1,34 @@
-import React from 'react'
+import React from "react";
+import { Nav } from "./Nav";
+import { Footer } from "./Footer";
+import { ProductList } from "../Components/Products/product-list";
+import { ProductFilter } from "./Filter";
 
+function Product() {
+  return (
+    <>
+      <Nav />
 
-function Product (props) {
-    
-    return ( 
-        <div key={props.id} class="card ecom-card">
-        <div class="card-header position-relative">
-            <span class="card-badge"> ❤ </span>
-            <span class="ecom-badge"> New Arrival </span>
-             <img height="268px" width="268px" loading="lazy"
-                src={props.img} alt="productImg" />
-            <span class="category">{props.categoryName}</span>
-        </div>
-        <div class="card-body">
-            <h3 class="card-heading">{props.title}</h3>
-            <p class="card-text">
-              $  {props.price} <span class="ecom-card-price">{props.oldPrice}</span> 
-            </p>
-        </div>
-        <div class="card-footer">
-            <a href="/cart-management/cart.html" class="btn btn-primary">Add To Cart</a>
-        </div>
-    </div>
+      {/* Product Content */}
+      <div class="flex mt-top smallScreenContainer">
+        {/* Filter column */}
+        <aside className="p-1">
+          <ProductFilter />
+        </aside>
 
-     );
+        {/* Product Column */}
+        <main className="p-1">
+          <h2 className="color-primary">
+            Products{" "}
+            <span className="highlight-text">( Showing 20 products )</span>
+          </h2>
+          <ProductList />
+        </main>
+      </div>
+
+      <Footer />
+    </>
+  );
 }
 
-export {Product} ;
+export { Product };
