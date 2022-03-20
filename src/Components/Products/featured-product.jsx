@@ -1,31 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useGetProducts } from "../../Hooks/useGetProducts";
 import { ProductCard } from "../../Pages/ProductCard";
 
 function FeaturedProduct() {
-  // useState for products
-  const [featuredProducts, setFeaturedProducts] = useState([]);
-
-  // useState for loader
-  const [loader, setLoader] = useState(true);
-
-  // Api call
-  async function getProducts() {
-    try {
-      await axios.get("/api/products").then((res) => {
-        setFeaturedProducts(res.data.products);
-        setLoader(false);
-      });
-    } catch (error) {
-      setFeaturedProducts("error is under review");
-    }
-  }
-
-  //   useEffect for getting products on page render
-  useEffect(() => {
-    setTimeout(() => getProducts(), 2000);
-    setLoader(true);
-  }, []);
+  const { loader, Products } = useGetProducts();
 
   return (
     <div className="featured-product-container">
@@ -36,8 +14,8 @@ function FeaturedProduct() {
 
       {/* products */}
       <div class="product-container m-1">
-        {featuredProducts &&
-          featuredProducts
+        {Products &&
+          Products
             .filter((item) => item.featured)
             .map((item) => (
               <ProductCard
