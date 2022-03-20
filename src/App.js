@@ -1,23 +1,16 @@
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import MockAPI from "./mockman";
-import {Nav} from "./Pages/Nav";
-import {LandingPage} from "./Pages/LandingPage";
-import {Product} from "./Pages/Product";
+// import Routes
+import URLRoutes from "./routes";
+
+// Import styles
+import "./App.css";
+
 
 function App() {
-
-
-
   return (
     <div>
-      <Routes>
-      <Route path="/mock-api" element={<MockAPI />} />
-      <Route path="/" element={<LandingPage/>} />
-      </Routes>
-      <Nav/>
+      <URLRoutes />
     </div>
   );
 }
