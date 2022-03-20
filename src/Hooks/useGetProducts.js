@@ -9,6 +9,10 @@ function useGetProducts() {
   // useState for loader
   const [loader, setLoader] = useState(true);
 
+//   useState for error
+const [errorMsg, setErrorMsg] = useState(false)
+
+
   // Api call
   async function getProducts() {
     try {
@@ -16,8 +20,10 @@ function useGetProducts() {
         setProducts(res.data.products);
         setLoader(false);
       });
-    } catch (error) {
-      setProducts("error is under review");
+    }catch(error) {
+    setErrorMsg(true)
+    setLoader(false)
+
     }
   }
 
@@ -27,7 +33,7 @@ function useGetProducts() {
     setLoader(true);
   }, []);
 
-  return { loader, Products }
+  return { loader, Products, errorMsg }
 }
 
 export  {useGetProducts};
