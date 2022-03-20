@@ -174,6 +174,7 @@ header p {
 footer {
   background-color: var(--GRAY-COLOR);
   height: 9.375rem;
+  bottom: 0;
 }
 footer div {
   height: 6.25rem;
@@ -217,8 +218,24 @@ footer div {
 }
 
 
+
 @media (max-width: 600px) {
   nav {
-    display: none;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    }
+    
+  nav .nav-list{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+  .nav-list input{
+    width: 100%;
   }
 }
