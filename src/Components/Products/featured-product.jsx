@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useGetProducts } from "../../Hooks/useGetProducts";
-import { ProductCard } from "../../Pages/ProductCard";
+
+// Context
+import { useProducts } from "../../Context/context";
+
+//Components
 import { Loader } from "../Loader/loader";
 import { ErrorMsg } from "../Error/error-msg";
 
+// Pages
+import { ProductCard } from "../../Pages/ProductCard";
+
+
 function FeaturedProduct() {
-  const { loader, Products, errorMsg } = useGetProducts();
+  const { loader, Products, errorMsg } = useProducts();
 
   return (
     <div className="featured-product-container">
       <h2 className="m-head">Featured Products</h2>
+
+      {/* Loader */}
       {loader && <Loader />}
 
       {/* products */}
@@ -24,6 +33,7 @@ function FeaturedProduct() {
               price={item.price}
               oldPrice={item.oldPrice}
               newArrival={item.newArrival}
+              rating = {item.rating}
             />
           ))}
       </div>
