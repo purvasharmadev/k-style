@@ -8,7 +8,7 @@ function ErrorMsg(props) {
     >
       <div className="snackbar">
         {props.msg}
-        <Link to="/" className="link color-white">
+        <Link to={props.link} className="link color-white">
           <span> Retry </span>
         </Link>
       </div>
