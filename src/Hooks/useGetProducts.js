@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 function useGetProducts() {
-     // useState for products
+  // useState for products
   const [Products, setProducts] = useState([]);
 
   // useState for loader
   const [loader, setLoader] = useState(true);
 
-//   useState for error
-const [errorMsg, setErrorMsg] = useState(false)
-
+  //   useState for error
+  const [errorMsg, setErrorMsg] = useState(false);
 
   // Api call
   async function getProducts() {
@@ -20,20 +18,20 @@ const [errorMsg, setErrorMsg] = useState(false)
         setProducts(res.data.products);
         setLoader(false);
       });
-    }catch(error) {
-    setErrorMsg(true)
-    setLoader(false)
-
+    } catch (error) {
+      setErrorMsg(true);
+      setLoader(false);
     }
   }
 
   //   useEffect for getting products on page render
   useEffect(() => {
-    setTimeout(() => getProducts(), 2000);
+    // setTimeout(() => getProducts(), 2000);
+    getProducts();
     setLoader(true);
   }, []);
 
-  return { loader, Products, errorMsg }
+  return { loader, Products, errorMsg };
 }
 
-export  {useGetProducts};
+export { useGetProducts };
