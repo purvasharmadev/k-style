@@ -56,15 +56,18 @@ function ProductFilter() {
       <h3 className="m-head">Price</h3>
       <div className="sliderContainer">
         <label htmlFor="priceRange" className="flex flex-space-between">
-          <span>50</span> <span>150</span>
-          <span>200</span>
+          <span>50</span> <span>2500</span>
+          <span>5000</span>
         </label>
         <input
           type="range"
           min="50"
-          max="200"
-          defaultValue="125"
+          max="5000"
+          defaultValue={filterState.range}
           id="priceRange"
+          onChange={(e) => {
+            filterDispatch({ type: "SORT_BY_RANGE", payload: e.target.value });
+          }}
         />
       </div>
 

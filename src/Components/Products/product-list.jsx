@@ -14,11 +14,11 @@ import { ProductCard } from "../../Pages/ProductCard";
 function ProductList() {
   const { Products, loader, errorMsg } = useGetProducts();
 
-
   // getting useReducer states i.e filterState from reducer
   const {
     filterState: {
       sort,
+      range,
       rating,
       TSHIRT,
       HOODIES,
@@ -41,6 +41,13 @@ function ProductList() {
         sort === "LOW_TO_HIGH"
           ? transformProducts.sort((a, b) => a.price - b.price)
           : transformProducts.sort((a, b) => b.price - a.price);
+    }
+
+    // Range
+    if (range) {
+      transformProducts = transformProducts.filter(
+        (item) => item.price <= range
+      );
     }
 
     // Conditions for individual category
@@ -78,11 +85,12 @@ function ProductList() {
         (item) => item.categoryName === "Idol-Fashion"
       );
     }
+
     // Search
 
     if (search_query) {
-      transformProducts = Products.filter(
-        (item) => item.title.toLowerCase().includes(search_query)
+      transformProducts = Products.filter((item) =>
+        item.title.toLowerCase().includes(search_query)
       );
     }
 
@@ -127,28 +135,30 @@ function ProductList() {
       {loader && <Loader />}
 
       {/* products */}
-      {newProducts.length !== 0 ? 
-
-      <div class="product-container m-1">
-         { newProducts &&
-          newProducts.map((item) => (
-            <ProductCard
-              key={item.id}
-              img={item.img}
-              categoryName={item.categoryName}
-              title={item.title}
-              price={item.price}
-              oldPrice={item.oldPrice}
-              newArrival={item.newArrival}
-              rating={item.rating}
-            />
-          )) }
-      </div>:
-      <ErrorMsg msg="No Products found!" link="/" />
-}
+      {newProducts.length !== 0 ? (
+        <div class="product-container m-1">
+          {newProducts &&
+            newProducts.map((item) => (
+              <ProductCard
+                key={item.id}
+                img={item.img}
+                categoryName={item.categoryName}
+                title={item.title}
+                price={item.price}
+                oldPrice={item.oldPrice}
+                newArrival={item.newArrival}
+                rating={item.rating}
+              />
+            ))}
+        </div>
+      ) : (
+        <ErrorMsg msg="No Products found!" link="/" />
+      )}
 
       {/* Error */}
-      {errorMsg && <ErrorMsg msg="Something is Wrong!! Please Try Again!" link='/' />}
+      {errorMsg && (
+        <ErrorMsg msg="Something is Wrong!! Please Try Again!" link="/" />
+      )}
     </>
   );
 }
