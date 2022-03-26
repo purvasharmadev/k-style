@@ -1,8 +1,12 @@
 import React from "react";
+
+// Page
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
-import { ProductList } from "../Components/Products/product-list";
 import { ProductFilter } from "./Filter";
+
+// Component
+import { ProductList } from "../Components/Products/product-list";
 
 function Product() {
   return (
@@ -18,10 +22,6 @@ function Product() {
 
         {/* Product Column */}
         <main className="p-1">
-          <h2 className="color-primary">
-            Products{" "}
-            <span className="highlight-text">( Showing 20 products )</span>
-          </h2>
           <ProductList />
         </main>
       </div>
