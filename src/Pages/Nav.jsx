@@ -51,9 +51,9 @@ function Nav() {
             </a>
           </li>
           <li className="nav-item">
-            <a href="/auth/login.html" className="nav-link btn btn-primary">
+            <Link to="/login" className="nav-link btn btn-primary">
               Login
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
