@@ -5,38 +5,41 @@ import { v4 as uuid } from "uuid";
  * You can add products of your wish with different attributes
  * */
 
+// CategoryNames : Tshirt, Hoodies, LightStick, Album, POCA, Idol-Fashion
+
 export const products = [
   {
     _id: uuid(),
     title: "BTS Euphoria",
     author: "Shiv Khera",
-    price: "1000",
-    oldPrice:"$2999",
+    price: "20",
     featured:true,
     newArrival:true,
     categoryName: "T-Shirt",
+    rating:4,
     img:"https://media.karousell.com/media/photos/products/2021/7/29/bts_tshirt_for_kids_and_adults_1627544395_1902498f_progressive.jpg"
   },
   {
     _id: uuid(),
     title: "BlackPink In Your Area",
     author: "Shiv Khera",
-    price: "1999",
-    oldPrice:"5000",
+    price: "300",
     featured:true,
     newArrival:false,
     categoryName: "T-Shirt",
+    rating:5,
     img:"https://img.joomcdn.net/643fe1ff724f96cbeea55fe19f323c4201fffba5_original.jpeg"
   },
   {
     _id: uuid(),
     title: "You Can WIN",
     author: "Shiv Khera",
-    price: "4000",
-    oldPrice:"5000",
+    price: "400",
+    oldPrice:"$ 599",
     featured:true,
     newArrival:false,
-    categoryName: "non-fiction",
+    categoryName: "Hoodies",
+    rating:1,
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
   {
@@ -47,7 +50,8 @@ export const products = [
     oldPrice:"5000",
     featured:true,
     newArrival:true,
-    categoryName: "non-fiction",
+    categoryName: "Idol-Fashion",
+    rating:4,
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
   {
@@ -58,8 +62,9 @@ export const products = [
     oldPrice:"5000",
     featured:true,
     newArrival:true,
+    rating:4,
 
-    categoryName: "non-fiction",
+    categoryName: "Album",
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
   {
@@ -70,7 +75,8 @@ export const products = [
     featured:true,
     newArrival:true,
 
-    categoryName: "non-fiction",
+    categoryName: "POCA",
+    rating:4,
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
 
@@ -81,7 +87,8 @@ export const products = [
     price: "3000",
     featured:true,
     newArrival:false,
-    categoryName: "horror",
+    categoryName: "Album",
+    rating:2,
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
   {
@@ -91,7 +98,8 @@ export const products = [
     price: "1000",
     featured:false,
     newArrival:true,
-    categoryName: "fiction",
+    categoryName: "Hoodies",
+    rating:3,
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
   {
@@ -101,7 +109,8 @@ export const products = [
     price: "1000",
     featured:false,
     newArrival:true,
-    categoryName: "fiction",
+    categoryName: "LightSticks",
+    rating:2,
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
   {
@@ -111,7 +120,8 @@ export const products = [
     price: "1000",
     featured:true,
     newArrival:false,
-    categoryName: "fiction",
+    categoryName: "POCA",
+    rating:4,
     img:"https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1701761661_large_crop_center.jpg?v=1620119459"
   },
 

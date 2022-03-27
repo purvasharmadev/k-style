@@ -1,8 +1,9 @@
 import {Link} from "react-router-dom";
-
+import {useProducts} from ".././Context/context"
 import "../Styles/home-page.css";
 
 function Nav() {
+  const {filterState, filterDispatch} = useProducts()
   return (
     <>
       <nav id="top">
@@ -19,6 +20,15 @@ function Nav() {
               type="text"
               className="icon color-primary"
               placeholder="search here"
+              value={filterState.search_query}
+              onChange={(e)=>{
+                filterDispatch(
+                  {type:'search_query', payload:e.target.value}
+              );
+
+              <Link to="/product">Link</Link>
+
+            }}
             />
           </li>
         </ul>
