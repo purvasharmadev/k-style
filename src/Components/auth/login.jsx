@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { Footer } from "../../Pages/Footer";
 import { Nav } from "../../Pages/Nav";
 import { useLogin } from "../../Hooks/useLoginUser";
 
 function Login() {
 
-  const {sucess,error,postUserLogin} = useLogin()
+  const {sucess,error,setUserData,userData, postUserLogin} = useLogin()
 
-  const [userMail, setUserMail] = useState("");
-  const [userPw, setUserPw] = useState("");
+  const guestLogin = () => {
+    console.log("guestLogin running...")
+    setUserData((prev) => ({
+      ...prev,
+      email: "guestuser@test.com",
+      password: "guestuser123",
+    }));
+  };
 
   function loginHandler(event) {
-    postUserLogin(userMail, userPw);
     event.preventDefault();
+    postUserLogin()
   }
 
   return (
@@ -38,8 +43,8 @@ function Login() {
           type="email"
           className={error ? "error" : ""}
           name="email"
-          value={userMail}
-          onChange={(e) => setUserMail(e.target.value)}
+          value={userData.email}
+          onChange={(e) => setUserData((prev)=>({...prev,email:e.target.value}))}
           placeholder="yourname@mail.com"
         />
         {error && <p className="error-msg p-1"> * Email does not exists</p>}
@@ -47,8 +52,8 @@ function Login() {
         <input
           type="password"
           name="password"
-          value={userPw}
-          onChange={(e) => setUserPw(e.target.value)}
+          value={userData.password}
+          onChange={(e) => setUserData((prev)=>({...prev,password:e.target.value}))}
           placeholder="********"
         />
         <div>
@@ -61,15 +66,8 @@ function Login() {
             />
             Remember Me
           </label>
-          <p 
-            
-            onClick={() => {
-              setUserMail("guestuser@test.com");
-              setUserPw("guestuser123");
-            }}
-            className="link color-primary"
-          >
-            Browse As Guest
+          <p onClick={()=>guestLogin()} className="link">
+            Browse as guest
           </p>
         </div>
 

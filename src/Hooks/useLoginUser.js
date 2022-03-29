@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 function useLogin() {
 
-  // useState for saving the recived token
-  const [token,setToken] = useState()
+  const [response, setResponse] = useState(undefined);
+
+  const [userData,setUserData] = useState({
+    email:"",password:""
+  })
+
+  const [ userName, setUserName] = useState('User')
+
 
   // useState for sucess
   const [sucess, setSucess] = useState(false);
@@ -12,29 +18,36 @@ function useLogin() {
   //   useState for error
   const [error, setError] = useState(false);
 
+
   // Api call
-  async function postUserLogin(mail, pw) {
+  async function postUserLogin() {
     try {
-      await axios
-        .post("/api/auth/login", {
-          email: mail,
-          password: pw,
-        })
-        .then((res) => {
-          localStorage.setItem("token", res.data.encodedToken)
-          setToken(localStorage.getItem("token"))
-          setSucess(true);
-          setError(false);
-        });
+   const res =  await axios.post("/api/auth/login",userData);
+   res.headers["*/*"]
+   setResponse(res.data)
+
+        
     } catch (error) {
       console.log("error is: ", error)
       setError(true);
     }
   }
 
+  useEffect(() => {
+    if(response !== undefined){
+          localStorage.setItem("token", response.encodedToken)
+          setUserName(response.foundUser.firstName)
+          console.log(userName)
+
+          setSucess(true);
+          setError(false);
+    }
+  }, [response]);
 
 
-  return { error, sucess, postUserLogin, token};
+
+
+  return { error, sucess, postUserLogin, setUserData,userData};
 }
 
 
