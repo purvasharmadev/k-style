@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // Import styles
 import "../Styles/home-page.css";
 import "../Styles/product.css";
+import "../Styles/auth.css";
 
 // Import Components
 import { FeaturedProduct } from "../Components/Products/featured-product";
@@ -48,10 +49,10 @@ function HomePage() {
           <h1 className="text-lg">KStyle</h1>
           <p>One stop for all your KPOP Cravings !!</p>
           <button className="btn btn-primary m-1">
-            <a href="/auth/login.html" className="nav-link link">
+            <Link to="/login" className="nav-link link">
               {" "}
               Login
-            </a>
+            </Link>
           </button>
           <button className="btn btn-secondary nav-link">
             <Link to="/product" className="nav-link link">

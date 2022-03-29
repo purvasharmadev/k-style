@@ -22,7 +22,7 @@ function FeaturedProduct() {
       {loader && <Loader />}
 
       {/* products */}
-      <div class="product-container m-1">
+      <div className="product-container m-1">
         {Products &&
           Products.filter((item) => item.featured).map((item) => (
             <ProductCard

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 // import Routes
 import URLRoutes from "./routes";
 
