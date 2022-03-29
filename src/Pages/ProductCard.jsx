@@ -21,7 +21,7 @@ function ProductCard(props) {
       </div>
       <div className="card-body text-left ">
         <h3 className="card-heading">{props.title}</h3>
-        <p className="card-text">
+        <div className="card-text">
           ${props.price}{" "}
           <span className="ecom-card-price color-danger">{props.oldPrice}</span>
           {props.rating ? (
@@ -31,7 +31,7 @@ function ProductCard(props) {
           ) : (
             " "
           )}
-        </p>
+        </div>
       </div>
       <div className="card-footer">
         <a href="/cart-management/cart.html" className="btn btn-primary">
