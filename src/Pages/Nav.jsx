@@ -35,12 +35,12 @@ function Nav() {
 
         <ul className="nav-list">
           <li className="nav-item">
-            <a href="/wishlist/wishlist.html" className="nav-link">
+            <Link to="/wishlist" className="nav-link">
               <span className="badge badge-span">
                 <i className="fa fa-heart fa-x"></i>
                 <span className="badge-circle badge-right"> 0 </span>
               </span>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
             <a href="/cart-management/cart.html" className="nav-link link">

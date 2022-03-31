@@ -238,6 +238,16 @@ main h2 {
     font-size: 1rem;
 }
 
+/* Wislist */
+
+.liked{
+    color: var(--DANGER-COLOR);
+}
+
+h2{
+    color: var(--PRIMARY-COLOR);
+    text-align: center;
+}
 
 /* Media Query */
 
