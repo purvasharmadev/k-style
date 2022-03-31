@@ -50,10 +50,6 @@ function Cart() {
           className="flex align-item-center container p-1 "
         >
           <h2 className="text-lg m-auto">No products added!</h2>
-          <p className="color-primary bold">
-            Add Now !!
-            <Link to="/product">Products</Link>
-          </p>
         </div>
       )}
 
