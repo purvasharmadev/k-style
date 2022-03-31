@@ -22,7 +22,7 @@ const ProductProvider = ({ children }) => {
     HOODIES: false,
   });
 
-  console.log("filterState: ", filterState);
+  // console.log("filterState: ", filterState);
   return (
     <ProductContext.Provider
       value={{ Products, loader, errorMsg, filterDispatch, filterState }}
