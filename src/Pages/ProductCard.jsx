@@ -1,8 +1,16 @@
 import React from "react";
+import { useCart } from "../Context/cart-context";
+import { Link } from "react-router-dom";
 
 function ProductCard(props) {
+  const { addToCart, productCart } = useCart();
+
+  function addToCartHandler(item) {
+    addToCart(item);
+  }
+
   return (
-    <div key={props.id} className="card ecom-card">
+    <div className="card ecom-card">
       <div className="card-header position-relative">
         <span className="card-badge"> ❤ </span>
         {props.newArrival ? (
@@ -22,7 +30,7 @@ function ProductCard(props) {
       <div className="card-body text-left ">
         <h3 className="card-heading">{props.title}</h3>
         <div className="card-text">
-          ${props.price}{" "}
+          Rs.{props.price}{" "}
           <span className="ecom-card-price color-danger">{props.oldPrice}</span>
           {props.rating ? (
             <p className="text-small">
@@ -34,9 +42,20 @@ function ProductCard(props) {
         </div>
       </div>
       <div className="card-footer">
-        <a href="/cart-management/cart.html" className="btn btn-primary">
-          Add To Cart
-        </a>
+        {productCart.findIndex((p) => p.id === props.item.id) === -1 ? (
+          <button
+            onClick={() => addToCartHandler(props.item)}
+            className="btn btn-primary"
+          >
+            Add To Cart
+          </button>
+        ) : (
+          <button className="btn btn-secondary">
+            <Link to="/cart" className="btn btn-secondary">
+              Go to Cart{" "}
+            </Link>{" "}
+          </button>
+        )}
       </div>
     </div>
   );

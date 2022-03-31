@@ -7,6 +7,9 @@ import { makeServer } from "./server";
 // Importing context
 import { ProductProvider } from "./Context/context"
 
+// Importing CartContext
+import {CartProvider} from "./Context/cart-context"
+
 // Call make Server
 makeServer();
 
@@ -18,7 +21,9 @@ ReactDOM.render(
 
     {/* Product Provider */}
     <ProductProvider>
+      <CartProvider>
       <App />
+      </CartProvider>
     </ProductProvider>
 
     </BrowserRouter>

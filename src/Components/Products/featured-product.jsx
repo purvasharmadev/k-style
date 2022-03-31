@@ -34,6 +34,7 @@ function FeaturedProduct() {
               oldPrice={item.oldPrice}
               newArrival={item.newArrival}
               rating = {item.rating}
+              item={item}
             />
           ))}
       </div>
