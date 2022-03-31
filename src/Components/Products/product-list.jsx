@@ -1,7 +1,6 @@
 import React from "react";
 
 //Context
-import { useProducts } from "../../Context/context";
 import { useGetProducts } from "../../Hooks/useGetProducts";
 import { filterProduct } from "../../Hooks/filter";
 
@@ -17,8 +16,7 @@ function ProductList() {
 
   // calling the filter function and storing the returned list in a variable to map over.
   let newProducts = filterProduct();
-
-  return (
+    return (
     <>
       <h2 className="color-primary">
         Products{" "}
@@ -35,7 +33,8 @@ function ProductList() {
         <div class="product-container m-1">
           {newProducts &&
             newProducts.map((item) => (
-              <ProductCard
+              <>
+                <ProductCard
                 key={item.id}
                 img={item.img}
                 categoryName={item.categoryName}
@@ -44,7 +43,10 @@ function ProductList() {
                 oldPrice={item.oldPrice}
                 newArrival={item.newArrival}
                 rating={item.rating}
+                item={item}
               />
+              </>
+
             ))}
         </div>
       ) : (

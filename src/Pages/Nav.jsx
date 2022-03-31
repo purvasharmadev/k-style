@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useProducts } from ".././Context/context";
-import { useCart } from ".././Context/cart-context"
-import "../Styles/home-page.css";
+import {useCart} from ".././Context/cart-context";
+
+// import "../Styles/home-page.css";
 
 function Nav() {
   const { filterState, filterDispatch } = useProducts();
-  const {cartState} = useCart()
+  const {productCart} = useCart();
   return (
     <>
       <nav id="top">
@@ -48,7 +49,7 @@ function Nav() {
             <Link to="/cart" className="nav-link link">
               <span className="badge badge-span">
                 <i className="fa fa-cart-plus fa-x"></i>
-                <span className="badge-circle badge-right">{cartState.count}</span>
+                <span className="badge-circle badge-right">{productCart.length}</span>
               </span>
             </Link>
           </li>
