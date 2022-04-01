@@ -88,7 +88,7 @@ function CartProvider({ children }) {
 
   useEffect(() => {
     if (productCart.length > 0) {
-      console.log("pcs from useCart :", productCart);
+       return  productCart      
     }
   }, [productCart]);
 

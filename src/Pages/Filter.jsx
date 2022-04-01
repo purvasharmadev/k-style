@@ -2,6 +2,7 @@ import React from "react";
 import { useProducts } from "../Context/context";
 
 function ProductFilter() {
+
   const { filterState, filterDispatch } = useProducts();
 
   return (
@@ -77,11 +78,11 @@ function ProductFilter() {
         <li>
           <input
             type="checkbox"
-            checked={filterState.TSHIRT ? true : false}
+            checked={filterState.Tshirt ? true : false}
             name="item1"
             id="item"
             onChange={() => {
-              filterDispatch({ type: "BY_TSHIRTS" });
+                filterDispatch({ type: "BY_Tshirt" });
             }}
           />{" "}
           Kpop T-Shirts
@@ -91,9 +92,9 @@ function ProductFilter() {
             type="checkbox"
             name="item2"
             id="item"
-            checked={filterState.HOODIES ? true : false}
+            checked={filterState.Hoodies ? true : false}
             onChange={() => {
-              filterDispatch({ type: "BY_HOODIES" });
+              filterDispatch({ type: "BY_Hoodies" });
             }}
           />{" "}
           Kpop Hoodies
@@ -105,7 +106,7 @@ function ProductFilter() {
             id="item"
             checked={filterState.IdolFashion ? true : false}
             onChange={() => {
-              filterDispatch({ type: "BY_IDOL_FASHION" });
+              filterDispatch({ type: "BY_IdolFashion" });
             }}
           />{" "}
           Kpop Idol Fashion
@@ -117,7 +118,7 @@ function ProductFilter() {
             id="item"
             checked={filterState.Album ? true : false}
             onChange={() => {
-              filterDispatch({ type: "BY_ALBUM" });
+              filterDispatch({ type: "BY_Albums" });
             }}
           />
           Kpop Albums
@@ -141,7 +142,7 @@ function ProductFilter() {
             id="item"
             checked={filterState.LightSticks ? true : false}
             onChange={() => {
-              filterDispatch({ type: "BY_LIGHTSTICKS" });
+              filterDispatch({ type: "BY_LightSticks" });
             }}
           />
           Kpop LightSticks

@@ -18,8 +18,8 @@ const ProductProvider = ({ children }) => {
     Album: false,
     LightSticks: false,
     IdolFashion: false,
-    TSHIRT: false,
-    HOODIES: false,
+    Tshirt: false,
+    Hoodies: false,
   });
 
   // console.log("filterState: ", filterState);

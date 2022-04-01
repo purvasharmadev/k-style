@@ -23,7 +23,7 @@ function CategoryList() {
 
   //   useEffect for getting products on page render
   useEffect(() => {
-    setTimeout(() => getCategories(), 2000);
+    getCategories();
     setLoader(true);
   }, []);
 
@@ -48,6 +48,7 @@ function CategoryList() {
                 key={item.categoryName}
                 name={item.categoryName}
                 img={item.categoryImg}
+                id={item.id}
               />
             ))}
         </div>

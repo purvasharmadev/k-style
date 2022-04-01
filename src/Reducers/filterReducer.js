@@ -5,18 +5,18 @@ function filterReducer(state, action) {
       return { ...state, sort: action.payload };
     case "SORT_BY_RANGE":
       return { ...state, range: action.payload };
-    case "BY_TSHIRTS":
-      return { ...state, TSHIRT: !state.TSHIRT };
+    case "BY_Tshirt":
+      return { ...state, Tshirt: !state.Tshirt };
     case "BY_POCA":
       return { ...state, POCA: !state.POCA };
-    case "BY_ALBUM":
+    case "BY_Albums":
       return { ...state, Album: !state.Album };
-    case "BY_LIGHTSTICKS":
+    case "BY_LightSticks":
       return { ...state, LightSticks: !state.LightSticks };
-    case "BY_IDOL_FASHION":
+    case "BY_IdolFashion":
       return { ...state, IdolFashion: !state.IdolFashion };
-    case "BY_HOODIES":
-      return { ...state, HOODIES: !state.HOODIES };
+    case "BY_Hoodies":
+      return { ...state, Hoodies: !state.Hoodies };
     case "BY_RATING":
       return { ...state, rating: action.payload };
     case "search_query":
