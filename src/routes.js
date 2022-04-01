@@ -13,6 +13,7 @@ export default function URLRoutes() {
       <Route path="/mockman" element={<MockAPI />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/product" element={<Product />} />
+      <Route path="/product/:categoryName" element={<Product />} />
       <Route path="/cart" element={<Cart/>} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
