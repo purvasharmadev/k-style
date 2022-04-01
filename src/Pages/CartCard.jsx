@@ -1,10 +1,20 @@
 import { useCart } from "../Context/cart-context";
+import { useList } from "../Context/wishlist-context";
 
 function CartCard(props) {
   const { removeFromCart, addOrSubItem } = useCart();
+  const { addToWishlist, removeFromWishlist, ListItems } = useList();
 
   function removeFromCartHandler(item) {
     removeFromCart(item);
+  }
+
+  function addToWishlistHandler(item) {
+    addToWishlist(item);
+  }
+
+  function removeFromWishlistHandler(item) {
+    removeFromWishlist(item);
   }
 
   function addOrSubHandler(item, operationType) {
@@ -55,9 +65,21 @@ function CartCard(props) {
             >
               Remove From Cart
             </button>
-            <a href="/" className="m-1 btn btn-secondary-outline">
-              Add to wishlist
-            </a>
+            {ListItems.findIndex((i) => i.id === props.item.id) === -1 ? (
+              <button
+                onClick={() => addToWishlistHandler(props.item)}
+                className="m-1 btn btn-secondary-outline"
+              >
+                Add to Wishlist
+              </button>
+            ) : (
+              <button
+                onClick={() => removeFromWishlistHandler(props.item)}
+                className="m-1 btn btn-secondary-outline"
+              >
+                Remove From Wishlist
+              </button>
+            )}
           </div>
         </div>
       </div>
