@@ -1,18 +1,57 @@
 import React from "react";
 import { useCart } from "../Context/cart-context";
+import { useList } from "../Context/wishlist-context";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../Hooks/useLoginUser";
 
 function ProductCard(props) {
+  let navigateTo = useNavigate();
+  const { token } = useLogin();
   const { addToCart, productCart } = useCart();
+  const { addToWishlist, removeFromWishlist, ListItems } = useList();
 
   function addToCartHandler(item) {
-    addToCart(item);
+    if (token != null) {
+      addToCart(item);
+    } else {
+      navigateTo("/login");
+    }
+  }
+
+  function addToWishlistHandler(item) {
+    if (token != null) {
+      addToWishlist(item);
+    } else {
+      navigateTo("/login");
+    }
+  }
+
+  function removeFromWishlistHandler(item) {
+    removeFromWishlist(item);
   }
 
   return (
     <div className="card ecom-card">
       <div className="card-header position-relative">
-        <span className="card-badge"> ❤ </span>
+        {ListItems.findIndex((i) => i.id === props.item.id) === -1 ? (
+          <span
+            onClick={() => addToWishlistHandler(props.item)}
+            className="card-badge"
+          >
+            {" "}
+            ❤{" "}
+          </span>
+        ) : (
+          <span
+            onClick={() => removeFromWishlistHandler(props.item)}
+            className="card-badge liked"
+          >
+            {" "}
+            ❤{" "}
+          </span>
+        )}
+
         {props.newArrival ? (
           <span className="ecom-badge">New Arrival</span>
         ) : (

@@ -1,5 +1,4 @@
 import { Footer } from "../../Pages/Footer";
-import { Link } from "react-router-dom";
 import { Nav } from "../../Pages/Nav";
 import { CartCard } from "../../Pages/CartCard";
 import { CartPriceDetail } from "../../Pages/CartPriceCard";
@@ -45,11 +44,8 @@ function Cart() {
           </div>
         </div>
       ) : (
-        <div
-          style={{ height: "100vh" }}
-          className="flex align-item-center container p-1 "
-        >
-          <h2 className="text-lg m-auto">No products added!</h2>
+        <div className="input-container">
+          <h2 className="form-heading p-1">Cart is empty!!</h2>
         </div>
       )}
 

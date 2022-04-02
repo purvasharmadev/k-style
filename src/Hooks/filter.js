@@ -8,8 +8,8 @@ function filterProduct() {
       sort,
       range,
       rating,
-      TSHIRT,
-      HOODIES,
+      Tshirt,
+      Hoodies,
       IdolFashion,
       POCA,
       Album,
@@ -53,13 +53,13 @@ function filterProduct() {
     });
   }
 
-  if (TSHIRT) {
-    const selectedCategory = applyFilter("T-Shirt");
+  if (Tshirt) {
+    const selectedCategory = applyFilter("Tshirt");
     filterByCategory(selectedCategory);
     transformProducts = categoryFilter;
   }
 
-  if (HOODIES) {
+  if (Hoodies) {
     const selectedCategory = applyFilter("Hoodies");
     filterByCategory(selectedCategory);
     transformProducts = categoryFilter;
@@ -82,7 +82,7 @@ function filterProduct() {
     transformProducts = categoryFilter;
   }
   if (IdolFashion) {
-    const selectedCategory = applyFilter("Idol-Fashion");
+    const selectedCategory = applyFilter("IdolFashion");
     filterByCategory(selectedCategory);
     transformProducts = categoryFilter;
   }

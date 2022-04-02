@@ -4,37 +4,29 @@ import axios from "axios";
 // creating a cart context, to use it acorss the webapp
 const CartContext = createContext();
 
-// API Configs
-const api = "/api/user/cart/";
-const axiosConfig = {
-  headers: {
-    "content-type": "text/json",
-    authorization: localStorage.getItem("token"),
-  },
-};
-
 // Provider Function
 function CartProvider({ children }) {
-  const [response, setResponse] = useState(undefined);
   const [productCart, setProductCart] = useState([]);
   const [sucess, setSucess] = useState(false);
 
-  // function to get list of items in cart
-  async function getCartProducts() {
-    try {
-      const cart = await axios.get(api, axiosConfig);
-      setProductCart(cart.data.cart);
-    } catch (error) {
-      console.log("error is: ", error);
-    }
-  }
+  // API Configs
+  const api = "/api/user/cart/";
 
   // Function to post the item to cart
   async function addToCart(item) {
     try {
       if (productCart.findIndex((p) => p.id === item.id) === -1) {
-        const res = await axios.post(api, { product: item }, axiosConfig);
-        setResponse(res.data.cart);
+        const res = await axios.post(
+          api,
+          { product: item },
+          {
+            headers: {
+              "content-type": "text/json",
+              authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+        setProductCart(res.data.cart);
         setSucess(true);
       }
     } catch (error) {
@@ -46,7 +38,12 @@ function CartProvider({ children }) {
 
   async function removeFromCart(item) {
     try {
-      const res = await axios.delete(`api/user/cart/${item._id}`, axiosConfig);
+      const res = await axios.delete(`api/user/cart/${item._id}`, {
+        headers: {
+          "content-type": "text/json",
+          authorization: localStorage.getItem("token"),
+        },
+      });
       setProductCart(res.data.cart);
     } catch (error) {
       console.log("error is :", error);
@@ -63,7 +60,12 @@ function CartProvider({ children }) {
             type: operationType,
           },
         },
-        axiosConfig
+        {
+          headers: {
+            "content-type": "text/json",
+            authorization: localStorage.getItem("token"),
+          },
+        }
       );
       setProductCart(res.data.cart);
     } catch (error) {
@@ -85,10 +87,10 @@ function CartProvider({ children }) {
   }, [productCart]);
 
   useEffect(() => {
-    if (response != undefined) {
-      getCartProducts();
+    if (productCart.length > 0) {
+       return  productCart      
     }
-  }, [response]);
+  }, [productCart]);
 
   // reutnring the CartContext Provider i.e to make "values" accesible to all its children
   return (
