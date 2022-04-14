@@ -9,15 +9,15 @@
 ## Features:
 
 
-- [Home](https://github.com/purvasharmadev/kstyle/blob/development/index.html)
+- [Home](https://github.com/purvasharmadev/k-style/blob/Dev/src/Pages/HomePage.jsx)
 
-- [Authentication](https://github.com/purvasharmadev/kstyle/tree/development/auth)
+- [Authentication](https://github.com/purvasharmadev/k-style/tree/Dev/src/Components/auth)
 
-- [Products](https://github.com/purvasharmadev/kstyle/tree/development/product)
+- [Products](https://github.com/purvasharmadev/k-style/tree/Dev/src/Components/Products)
 
-- [Wishlist](https://github.com/purvasharmadev/kstyle/tree/development/wishlist)
+- [Wishlist](https://github.com/purvasharmadev/k-style/tree/Dev/src/Components/Wishlist)
 
-- [Cart](https://github.com/purvasharmadev/kstyle/tree/development/cart-management)
+- [Cart](https://github.com/purvasharmadev/k-style/tree/Dev/src/Components/Cart)
 
 
 ## Build with:
