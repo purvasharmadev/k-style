@@ -28,7 +28,7 @@ function WishListProvider({ children }) {
         setListItems(res.data.wishlist);
       }
     } catch (error) {
-      console.log("error is: ", error);
+      console.error("error is: ", error.response.data.errors);
     }
   }
 
@@ -43,7 +43,7 @@ function WishListProvider({ children }) {
       });
       setListItems(res.data.wishlist);
     } catch (error) {
-      console.log("error is :", error);
+      console.error("error is :", error.response.data.errors);
     }
   }
 
