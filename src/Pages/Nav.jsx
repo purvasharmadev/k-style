@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useProducts } from ".././Context/context";
 import { useCart } from ".././Context/cart-context";
 import { useList } from ".././Context/wishlist-context";
+import { useAuth } from "../Context/auth-context";
 import { useNavigate } from "react-router-dom";
 
 // import "../Styles/home-page.css";
@@ -12,6 +13,7 @@ function Nav() {
   const { filterState, filterDispatch } = useProducts();
   const { productCart } = useCart();
   const { ListItems } = useList();
+  const { setIsLoggedIn } = useAuth();
 
   return (
     <>
@@ -82,15 +84,16 @@ function Nav() {
                 id="logout"
               />
               <span class="tooltip-text">
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   onClick={() => {
                     localStorage.clear();
+                    setIsLoggedIn(false);
                   }}
                   class="link"
                 >
                   Logout
-                </a>
+                </Link>
               </span>
             </li>
           )}

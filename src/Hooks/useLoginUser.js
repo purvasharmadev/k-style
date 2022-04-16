@@ -1,19 +1,28 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../Context/auth-context";
 import axios from "axios";
 
 function useLogin() {
-  const [response, setResponse] = useState(undefined);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { setIsLoggedIn } = useAuth();
 
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
 
+  const [response, setResponse] = useState(undefined);
+
   // useState for sucess
   const [sucess, setSucess] = useState(false);
 
   //   useState for error
   const [error, setError] = useState(false);
+
+  // useState for errormsg
+  const [errMsg, setErrMsg] = useState("");
 
   // Api call
   async function postUserLogin() {
@@ -22,22 +31,25 @@ function useLogin() {
       res.headers["*/*"];
       setResponse(res.data);
     } catch (error) {
-      console.log("error is: ", error);
       setError(true);
+      setErrMsg(error.response.data.errors[0]);
     }
   }
-
   useEffect(() => {
     if (response !== undefined) {
       localStorage.setItem("token", response.encodedToken);
       setSucess(true);
       setError(false);
+      setIsLoggedIn(true);
+      location.state !== null ?
+      navigate(location.state?.from?.pathname, { replace: true }):
+      navigate("/", { replace: true });
     }
   }, [response]);
 
   const token = localStorage.getItem("token");
 
-  return { error, sucess, postUserLogin, setUserData, userData, token };
+  return { error, sucess, postUserLogin, setUserData, errMsg, userData, token };
 }
 
 export { useLogin };
