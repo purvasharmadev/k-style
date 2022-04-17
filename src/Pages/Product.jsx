@@ -18,7 +18,7 @@ function Product() {
       <Nav />
 
       {/* Product Content */}
-      <div class="flex mt-top smallScreenContainer">
+      <div className="flex mt-top smallScreenContainer">
         {/* Filter column */}
         <aside className="p-1">
           <ProductFilter />

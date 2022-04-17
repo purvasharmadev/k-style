@@ -1,10 +1,13 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer , useState } from "react";
 import { useGetProducts } from "../Hooks/useGetProducts";
 import { filterReducer } from "../Reducers/filterReducer";
+
 
 const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
+
+
   // getting products , error , loader by hook
   const { Products, errorMsg, loader } = useGetProducts();
 

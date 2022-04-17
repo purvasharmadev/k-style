@@ -76,21 +76,21 @@ function Nav() {
               </Link>
             </li>
           ) : (
-            <li class="nav-item position-relative tooltip">
+            <li className="nav-item position-relative tooltip">
               <img
                 src="https://i.pinimg.com/736x/b8/03/78/b80378993da7282e58b35bdd3adbce89.jpg"
-                class="avatar avatar-sm"
+                className="avatar avatar-sm"
                 alt="profile-pic"
                 id="logout"
               />
-              <span class="tooltip-text">
+              <span className="tooltip-text">
                 <Link
                   to="/"
                   onClick={() => {
                     localStorage.clear();
                     setIsLoggedIn(false);
                   }}
-                  class="link"
+                  className="link"
                 >
                   Logout
                 </Link>

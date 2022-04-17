@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // creating a wishlist context, to use it acorss the webapp
 const WishListContext = createContext();
@@ -25,10 +26,23 @@ function WishListProvider({ children }) {
             },
           }
         );
-        setListItems(res.data.wishlist);
+        if (res.status === 201) {
+          console.log("res of wishlist ", res.data.wishlist);
+          setListItems(res.data.wishlist);
+          toast.success("Item added to wishlist!", {
+            toastId: "wishlist-add-success",
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1000,
+          });
+        }
       }
     } catch (error) {
       console.error("error is: ", error.response.data.errors);
+      toast.error("Something went wrong ! unable to add item", {
+        toastId: "wishlist-add-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+      });
     }
   }
 
@@ -41,9 +55,21 @@ function WishListProvider({ children }) {
           authorization: localStorage.getItem("token"),
         },
       });
-      setListItems(res.data.wishlist);
+      if (res.status === 200) {
+        setListItems(res.data.wishlist);
+        toast.error("Item removed from Wishlist!", {
+          toastId: "wishlist-item-remove",
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1000,
+        });
+      }
     } catch (error) {
       console.error("error is :", error.response.data.errors);
+      toast.error("Something went wrong! unable to remove item!", {
+        toastId: "wishlist-remove-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+      });
     }
   }
 

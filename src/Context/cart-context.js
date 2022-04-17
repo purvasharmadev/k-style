@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // creating a cart context, to use it acorss the webapp
 const CartContext = createContext();
@@ -8,7 +9,6 @@ const CartContext = createContext();
 function CartProvider({ children }) {
   const [productCart, setProductCart] = useState([]);
   const [sucess, setSucess] = useState(false);
-
 
   // API Configs
   const api = "/api/user/cart/";
@@ -27,11 +27,24 @@ function CartProvider({ children }) {
             },
           }
         );
-        setProductCart(res.data.cart);
+        if (res.status === 201) {
+          setProductCart(res.data.cart);
+          toast.success("Item added to cart!", {
+            toastId: "cart-success",
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1000,
+          });
+        }
+
         setSucess(true);
       }
     } catch (error) {
       console.error("error is: ", error.response.data.errors);
+      toast.error("Something went wrong!, Unable to add item", {
+        toastId: "cart-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+      });
     }
   }
 
@@ -45,9 +58,21 @@ function CartProvider({ children }) {
           authorization: localStorage.getItem("token"),
         },
       });
-      setProductCart(res.data.cart);
+      if (res.status === 200) {
+        setProductCart(res.data.cart);
+        toast.error("Item removed from Cart!", {
+          toastId: "cart-item-remove",
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1000,
+        });
+      }
     } catch (error) {
       console.error("error is :", error.response.data.errors);
+      toast.error("Something went wrong!, Unable to remove item!", {
+        toastId: "cart-item-remove-error",
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+      });
     }
   }
 
@@ -68,9 +93,24 @@ function CartProvider({ children }) {
           },
         }
       );
-      setProductCart(res.data.cart);
+      if (res.status === 200) {
+        setProductCart(res.data.cart);
+        toast.success(`Item ${operationType} to cart!`, {
+          toastId: "cart-itemCount-success",
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 500,
+        });
+      }
     } catch (error) {
       console.error("error is: ", error.response.data.errors);
+      toast.error(
+        `Something went wrong!, Unable to perform ${operationType}  !`,
+        {
+          toastId: "cart-itemCount-error",
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 500,
+        }
+      );
     }
   }
 

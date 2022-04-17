@@ -30,7 +30,7 @@ function ProductList() {
 
       {/* products */}
       {newProducts.length !== 0 ? (
-        <div class="product-container m-1">
+        <div className="product-container m-1">
           {newProducts &&
             newProducts.map((item) => (
               <>
