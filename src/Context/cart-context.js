@@ -9,6 +9,7 @@ function CartProvider({ children }) {
   const [productCart, setProductCart] = useState([]);
   const [sucess, setSucess] = useState(false);
 
+
   // API Configs
   const api = "/api/user/cart/";
 
@@ -30,7 +31,7 @@ function CartProvider({ children }) {
         setSucess(true);
       }
     } catch (error) {
-      console.log("error is: ", error);
+      console.error("error is: ", error.response.data.errors);
     }
   }
 
@@ -46,7 +47,7 @@ function CartProvider({ children }) {
       });
       setProductCart(res.data.cart);
     } catch (error) {
-      console.log("error is :", error);
+      console.error("error is :", error.response.data.errors);
     }
   }
 
@@ -69,7 +70,7 @@ function CartProvider({ children }) {
       );
       setProductCart(res.data.cart);
     } catch (error) {
-      console.log("error is: ", error);
+      console.error("error is: ", error.response.data.errors);
     }
   }
 
@@ -88,7 +89,7 @@ function CartProvider({ children }) {
 
   useEffect(() => {
     if (productCart.length > 0) {
-       return  productCart      
+      return productCart;
     }
   }, [productCart]);
 

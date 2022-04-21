@@ -13,7 +13,11 @@ import { Banner } from "./Banner";
 import { Nav } from "../Pages/Nav";
 import { Footer } from "../Pages/Footer";
 
+// Import Context
+import { useAuth } from "../Context/auth-context";
+
 function HomePage() {
+  const { isLoggedIn } = useAuth();
   return (
     <>
       {/* NavBar */}
@@ -48,12 +52,15 @@ function HomePage() {
         <div>
           <h1 className="text-lg">KStyle</h1>
           <p>One stop for all your KPOP Cravings !!</p>
-          <button className="btn btn-primary m-1">
-            <Link to="/login" className="nav-link link">
-              {" "}
-              Login
-            </Link>
-          </button>
+          {isLoggedIn ? null : (
+            <button className="btn btn-primary m-1">
+              <Link to="/login" className="nav-link link">
+                {" "}
+                Login
+              </Link>
+            </button>
+          )}
+
           <button className="btn btn-secondary nav-link">
             <Link to="/product" className="nav-link link">
               {" "}
