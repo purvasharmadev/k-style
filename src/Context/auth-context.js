@@ -1,22 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useLogin } from "../Hooks/useLoginUser";
-import { useNavigate } from "react-router-dom";
+import { getDataFromLocal } from "../Hooks/useLocalStorage";
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Persisting the login state in local storage:
-
-  useEffect(() => {
-    const loginCheck = localStorage.getItem("isLoggedIn");
-    loginCheck && JSON.parse(loginCheck)
-      ? setIsLoggedIn(true)
-      : setIsLoggedIn(false);
-  }, []);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    getDataFromLocal("isLoggedIn", false)
+  );
 
   useEffect(() => {
-    localStorage.setItem("isLoggedIn", isLoggedIn);
+    localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
 
   return (
