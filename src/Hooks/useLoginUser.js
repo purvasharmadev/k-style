@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../Context/auth-context";
 import axios from "axios";
-import { toast } from "react-toastify";
-
+import { useNavigate, useLocation } from "react-router-dom";
+import {useNotify} from "../Hooks/useNotify";
 function useLogin() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,6 +12,8 @@ function useLogin() {
     email: "",
     password: "",
   });
+
+  const [userInfo,setUserInfo] = useState()
 
   const [response, setResponse] = useState(undefined);
 
@@ -32,11 +33,8 @@ function useLogin() {
       res.headers["*/*"];
       if (res.status === 200) {
         setResponse(res.data);
-        toast.success("Successfully Logged in!", {
-          toastId: "login-success",
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 1000,
-        });
+        setUserInfo(res.data.userFound)
+        useNotify("Successfully Logged In!","login-success","success")
       }
     } catch (error) {
       setError(true);
@@ -49,6 +47,7 @@ function useLogin() {
       setSucess(true);
       setError(false);
       setIsLoggedIn(true);
+      localStorage.setItem("userInfo", JSON.stringify(response.foundUser))
       location.state !== null
         ? navigate(location.state?.from?.pathname, { replace: true })
         : navigate("/", { replace: true });
@@ -57,7 +56,7 @@ function useLogin() {
 
   const token = localStorage.getItem("token");
 
-  return { error, sucess, postUserLogin, setUserData, errMsg, userData, token };
+  return { error, sucess, postUserLogin, setUserData, errMsg, userData, token, response, userInfo };
 }
 
 export { useLogin };
