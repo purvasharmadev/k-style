@@ -14,12 +14,11 @@ function SignUp() {
 
   return (
     <>
-      <Nav />
         <div className="input-container mt-top">
           <h2 className="form-heading">Signup</h2>
 
           <form onSubmit={signUpHandler} className="form-container">
-            <label htmlFor="first-name">first Name</label>
+            <label htmlFor="first-name">First Name</label>
             <input
               type="text"
               name="first-name"
@@ -84,7 +83,6 @@ function SignUp() {
             </h4>
           </form>
         </div>
-      <Footer />
     </>
   );
 }

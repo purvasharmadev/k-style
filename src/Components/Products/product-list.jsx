@@ -35,7 +35,7 @@ function ProductList() {
             newProducts.map((item) => (
               <>
                 <ProductCard
-                key={item.id}
+                key={item.title}
                 img={item.img}
                 categoryName={item.categoryName}
                 title={item.title}

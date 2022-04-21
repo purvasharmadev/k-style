@@ -15,7 +15,6 @@ function Product() {
 
   return (
     <>
-      <Nav />
 
       {/* Product Content */}
       <div className="flex mt-top smallScreenContainer">
@@ -30,7 +29,6 @@ function Product() {
         </main>
       </div>
 
-      <Footer />
     </>
   );
 }

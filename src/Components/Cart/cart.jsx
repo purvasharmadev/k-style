@@ -10,7 +10,6 @@ function Cart() {
 
   return (
     <>
-      <Nav />
       <h2 className="p-1 mt-top text-center">
         My Cart <span className="highlight-text">({productCart.length})</span>
       </h2>
@@ -48,8 +47,6 @@ function Cart() {
           <h2 className="form-heading p-1">Cart is empty!!</h2>
         </div>
       )}
-
-      <Footer />
     </>
   );
 }

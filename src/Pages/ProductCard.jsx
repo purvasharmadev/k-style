@@ -13,7 +13,7 @@ function ProductCard(props) {
   const currentLocation = useLocation();
 
   function addToCartHandler(item) {
-    isLoggedIn
+    isLoggedIn 
       ? addToCart(item)
       : navigateTo("/login", {
           state: { from: currentLocation },
@@ -22,7 +22,7 @@ function ProductCard(props) {
   }
 
   function addToWishlistHandler(item) {
-    isLoggedIn
+    isLoggedIn 
       ? addToWishlist(item)
       : navigateTo("/login", {
           state: { from: currentLocation },
@@ -35,7 +35,7 @@ function ProductCard(props) {
   }
 
   return (
-    <div className="card ecom-card">
+    <div  className="card ecom-card">
       <div className="card-header position-relative">
         {ListItems.findIndex((i) => i.id === props.item.id) === -1 ? (
           <span

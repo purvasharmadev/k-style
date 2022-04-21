@@ -7,3 +7,17 @@
 .text-left{
     text-align: left;
 }
+.text-right{
+    text-align: right;
+}
+.link-hover{
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.pointer:hover{
+    cursor: pointer;
+}
+
+.tooltip .tooltip-text .link{
+    color: var(--TEXT-COLOR);
+}

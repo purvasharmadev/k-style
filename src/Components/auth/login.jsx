@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { Footer } from "../../Pages/Footer";
-import { Nav } from "../../Pages/Nav";
 import { useLogin } from "../../Hooks/useLoginUser";
 import { useState } from "react";
 
@@ -24,7 +22,6 @@ function Login() {
 
   return (
     <>
-      <Nav />
         <div className="input-container mt-top">
           <h2 className="form-heading">Login</h2>
           {error && <p className="color-danger bold p-1"> * {errMsg}</p>}
@@ -62,7 +59,7 @@ function Login() {
                 />
                 Remember Me
               </label>
-              <p onClick={() => guestLogin()} className="link">
+              <p onClick={() => guestLogin()} className="link pointer">
                 Browse as guest
               </p>
             </div>
@@ -80,7 +77,6 @@ function Login() {
         </div>
 
 
-      <Footer />
     </>
   );
 }

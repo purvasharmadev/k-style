@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
-
+import { useNotify } from "../Hooks/useNotify";
 // creating a cart context, to use it acorss the webapp
 const CartContext = createContext();
 
@@ -29,22 +28,20 @@ function CartProvider({ children }) {
         );
         if (res.status === 201) {
           setProductCart(res.data.cart);
-          toast.success("Item added to cart!", {
-            toastId: "cart-success",
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 1000,
-          });
+          useNotify("Item added to cart!",
+          "success",
+           "cart-add-success",
+          );
         }
 
         setSucess(true);
       }
     } catch (error) {
-      console.error("error is: ", error.response.data.errors);
-      toast.error("Something went wrong!, Unable to add item", {
-        toastId: "cart-error",
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 1000,
-      });
+      console.error("error is: ", error.response.data.errors[0]);
+      useNotify("Something went wrong ! unable to add item",
+      "error",
+       "cart-add-error",
+      );
     }
   }
 
@@ -60,19 +57,17 @@ function CartProvider({ children }) {
       });
       if (res.status === 200) {
         setProductCart(res.data.cart);
-        toast.error("Item removed from Cart!", {
-          toastId: "cart-item-remove",
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 1000,
-        });
+        useNotify("Item removed from Cart!",
+        "error",
+         "Cart-item-remove",
+        );
       }
     } catch (error) {
-      console.error("error is :", error.response.data.errors);
-      toast.error("Something went wrong!, Unable to remove item!", {
-        toastId: "cart-item-remove-error",
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 1000,
-      });
+      console.error("error is :", error.response.data.errors[0]);
+      useNotify("Something went wrong! unable to remove item!",
+      "error",
+       "cart-remove-error",
+      );
     }
   }
 
@@ -95,21 +90,16 @@ function CartProvider({ children }) {
       );
       if (res.status === 200) {
         setProductCart(res.data.cart);
-        toast.success(`Item ${operationType} to cart!`, {
-          toastId: "cart-itemCount-success",
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 500,
-        });
+        useNotify(`Item ${operationType} to cart!`,
+        "success",
+         "cart-itemCount-success",
+        );
       }
     } catch (error) {
       console.error("error is: ", error.response.data.errors);
-      toast.error(
-        `Something went wrong!, Unable to perform ${operationType}  !`,
-        {
-          toastId: "cart-itemCount-error",
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 500,
-        }
+      useNotify("Something went wrong! Please try again later",
+      "error",
+       "cart-itemCount-error",
       );
     }
   }

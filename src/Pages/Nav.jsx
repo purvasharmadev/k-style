@@ -13,7 +13,7 @@ function Nav() {
   const { filterState, filterDispatch } = useProducts();
   const { productCart } = useCart();
   const { ListItems } = useList();
-  const { setIsLoggedIn } = useAuth();
+  const { setIsLoggedIn, isLoggedIn } = useAuth();
 
   return (
     <>
@@ -69,7 +69,7 @@ function Nav() {
               </span>
             </Link>
           </li>
-          {localStorage.getItem("token") === null ? (
+          {!isLoggedIn ? (
             <li className="nav-item">
               <Link to="/login" className="nav-link btn btn-primary">
                 Login
@@ -83,16 +83,24 @@ function Nav() {
                 alt="profile-pic"
                 id="logout"
               />
-              <span className="tooltip-text">
-                <Link
-                  to="/"
+              <span className="flex flex-column tooltip-text">
+                <span
                   onClick={() => {
                     localStorage.clear();
                     setIsLoggedIn(false);
+                    productCart.length = 0;
+                    ListItems.length = 0;
+                    navigateTo("/")
                   }}
-                  className="link"
+                  className="link link-hover "
                 >
                   Logout
+                </span>
+                <Link
+                  to="/profile"
+                  className="link color-white"
+                >
+                  Profile
                 </Link>
               </span>
             </li>

@@ -20,9 +20,6 @@ function HomePage() {
   const { isLoggedIn } = useAuth();
   return (
     <>
-      {/* NavBar */}
-      <Nav />
-
       {/* Group Banners */}
       <div className="banner-container">
         <Banner
@@ -76,8 +73,6 @@ function HomePage() {
       {/*Featured product  */}
       <FeaturedProduct />
 
-      {/* Footer */}
-      <Footer />
     </>
   );
 }

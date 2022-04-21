@@ -11,7 +11,6 @@ function Wishlist() {
   const { ListItems } = useList();
   return (
     <>
-      <Nav />
 
       <h2 className="p-1 mt-top text-center">
         My Wishlist <span className="highlight-text">({ListItems.length})</span>
@@ -39,7 +38,6 @@ function Wishlist() {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 }
