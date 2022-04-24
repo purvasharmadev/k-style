@@ -1,4 +1,6 @@
-/* @import url("https://glow-css.netlify.app/component.css"); */
+/* @import url(
+    https://glow-css.netlify.app/component.css
+); */
 
 .text-center{
     text-align: center;
@@ -20,4 +22,35 @@
 
 .tooltip .tooltip-text .link{
     color: var(--TEXT-COLOR);
+}
+
+.round{
+    border: 5px solid; 
+    border-radius: 50%;
+    margin-left:-15px;
+    background-color:var(--PRIMARY-COLOR);
+    color:var(--PRIMARY-COLOR);
+}
+.progressStick{
+    height: 50px;
+    background: var(--PRIMARY-COLOR);
+    transition: height 0.5s;
+    border: 5px solid var(--PRIMARY-COLOR);
+}
+
+/* marginLeft:"-10px",border:"2px solid",padding:"7px",borderRadius:"3px" */
+.btn-apply-coupon{
+    margin-left: -10px;
+    border: 2px solid;
+    padding: 7px;
+    border-radius: 3px;
+
+}
+
+.btn-coupon{
+    padding: 2px;
+    background-color: var(--SECONDARY-COLOR);
+    color: aliceblue;
+    margin: 2px;
+    cursor: pointer;
 }

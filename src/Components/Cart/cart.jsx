@@ -1,5 +1,4 @@
-import { Footer } from "../../Pages/Footer";
-import { Nav } from "../../Pages/Nav";
+
 import { CartCard } from "../../Pages/CartCard";
 import { CartPriceDetail } from "../../Pages/CartPriceCard";
 import "../../Styles/cart.css";

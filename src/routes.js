@@ -10,6 +10,7 @@ import { Cart } from "./Components/Cart/cart.jsx";
 
 
 import { RequiresAuth } from "./Hooks/RequiresAuth";
+import { CheckOut } from "./Pages/CheckOut.jsx";
 
 export default function URLRoutes() {
   return (
@@ -19,6 +20,16 @@ export default function URLRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/product" element={<Product />} />
       <Route path="/product/:categoryName" element={<Product />} />
+      {/* <Route path="/checkout" element={<CheckOut />} /> */}
+
+      <Route
+        path="/checkout"
+        element={
+          <RequiresAuth>
+            <CheckOut />
+          </RequiresAuth>
+        }
+      />
 
       <Route
         path="/cart"
