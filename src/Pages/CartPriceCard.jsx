@@ -45,17 +45,7 @@ function CartPriceDetail() {
   }
   return (
     <>
-      <div className="order-flex flex flex-space-between align-item-center">
-        <div className="order-detail">
-          <h3>Price ( {productCart.length} Items )</h3>
-          <h3>Delivery Charges</h3>
-        </div>
-        <div className="price-detail">
-          <h3>Rs. {totalPrice}</h3>
-          <h3>{totalPrice > 1000 ? "Yay! you got free delivery" : "Rs. 40"}</h3>
-        </div>
-      </div>
-      {location.pathname !== "/cart" && totalPrice > 600 ? (
+          {location.pathname !== "/cart" && totalPrice > 600 ? (
         <>
           <div className="order-flex flex flex-space-between align-item-center">
             <div className="order-detail">
@@ -126,6 +116,25 @@ function CartPriceDetail() {
       ) : (
         ""
       )}
+      <div className="order-flex flex flex-space-between align-item-center">
+        <div className="order-detail">
+          <h3>Price ( {productCart.length} Items )</h3>
+          <h3>Delivery Charges</h3>
+          {
+            saved && <h3>Coupon Discount</h3>
+
+          }
+        </div>
+        <div className="price-detail">
+          <h3>Rs. {totalPrice}</h3>
+          <h3>{totalPrice > 1000 ? "Yay! you got free delivery" : "Rs. 40"}</h3>
+         {
+           saved && <h3>{saved}</h3>
+         } 
+
+        </div>
+      </div>
+
 
       <div className="order-flex flex flex-space-between align-item-center mb-1">
         <div className="order-detail">
@@ -135,7 +144,6 @@ function CartPriceDetail() {
           {location.pathname !== "/cart" ? (
             <>
               <h3>Rs. {newPrice}</h3>
-              <h3>{saved}</h3>
             </>
           ) : (
             <>
