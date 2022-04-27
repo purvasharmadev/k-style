@@ -29,8 +29,8 @@ function CartProvider({ children }) {
         if (res.status === 201) {
           setProductCart(res.data.cart);
           useNotify("Item added to cart!",
-          "success",
            "cart-add-success",
+           "success",
           );
         }
 
@@ -39,8 +39,8 @@ function CartProvider({ children }) {
     } catch (error) {
       console.error("error is: ", error.response.data.errors[0]);
       useNotify("Something went wrong ! unable to add item",
-      "error",
        "cart-add-error",
+       "error",
       );
     }
   }
@@ -58,15 +58,15 @@ function CartProvider({ children }) {
       if (res.status === 200) {
         setProductCart(res.data.cart);
         useNotify("Item removed from Cart!",
-        "error",
          "Cart-item-remove",
+         "error",
         );
       }
     } catch (error) {
       console.error("error is :", error.response.data.errors[0]);
       useNotify("Something went wrong! unable to remove item!",
-      "error",
        "cart-remove-error",
+       "error",
       );
     }
   }
@@ -91,16 +91,13 @@ function CartProvider({ children }) {
       if (res.status === 200) {
         setProductCart(res.data.cart);
         useNotify(`Item ${operationType} to cart!`,
+        "cart-itemCount-success",
         "success",
-         "cart-itemCount-success",
         );
       }
     } catch (error) {
       console.error("error is: ", error.response.data.errors);
-      useNotify("Something went wrong! Please try again later",
-      "error",
-       "cart-itemCount-error",
-      );
+      useNotify("Something Went Wrong !","cart-item-error","error")
     }
   }
 
