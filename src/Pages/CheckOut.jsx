@@ -1,26 +1,27 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/cart-context";
+import { useOrders } from "../Context/order-context";
 import { CartPriceDetail } from "./CartPriceCard";
 
 // Address
 function CheckOut() {
-  const { productCart, totalPrice } = useCart();
+  const { productCart } = useCart();
+  const { setSelectedAddress, setPaymentMode } = useOrders();
   const address = JSON.parse(localStorage.getItem("address"));
   const [select, setSelect] = useState([]);
   const [display, setDisplay] = useState("block");
-  const [orderSuccessMsg, setOrderSuccessMsg] = useState("");
-  const [height, setHeight] = useState("50px");
+  const [height, setHeight] = useState("10px");
   return (
     <>
-      <div className="flex flex-space-evenly p-1 m-1 ">
+      <div className="flex flex-space-evenly p-1 mb-1">
         <div>
           <h2 className="m-top text-left">
             {" "}
             <span className="round">he</span> Step-1: Select an Address
           </h2>
 
-          <div className="flex container flex-space-between m-1">
+          <div className="flex container">
             <div style={{ height: height }} className="progressStick"></div>
 
             {select && select.length != 0 ? (
@@ -58,6 +59,7 @@ function CheckOut() {
                     <div className="card-header">
                       <span
                         onClick={() => {
+                          setSelectedAddress(item);
                           setSelect(item);
                           setDisplay("none");
                           setHeight("200px");
@@ -91,20 +93,32 @@ function CheckOut() {
             <span className="round">he</span> Step-2: Select An Payment Mode!
           </h2>
           <div className="flex flex-space-between p-1">
-            <button
-              onClick={() => {
-                setOrderSuccessMsg("Your order has been successfully placed!");
-              }}
-              className="btn btn-primary"
-            >
+            <label htmlFor="online">
+            <input 
+            onChange={()=>{
+              setPaymentMode("Online");
+            }}
+             name="online" type="radio"/>
+            <span className="text-normal color-primary bold">
+              Online          
+            </span>
+            </label>
+            <label htmlFor="online">
+            <input
+          onChange={()=>{
+           setPaymentMode("COD");
+                        }}
+             name="online" type="radio"/>
+            <span className="text-normal color-primary bold">
               Cash On Delivery
-            </button>
-            <button className="btn btn-primary">OnLine Payment</button>
+            </span>
+
+            </label>
+
           </div>
         </div>
         <div className="m-top">
           <h2>Order Summary</h2>
-          <h3>{orderSuccessMsg}</h3>
           {productCart.map((item) => {
             return (
               <div className="order-flex flex flex-space-between">
@@ -113,7 +127,6 @@ function CheckOut() {
               </div>
             );
           })}
-
           <CartPriceDetail />
         </div>
       </div>

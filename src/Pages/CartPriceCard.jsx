@@ -1,15 +1,21 @@
 import { useState } from "react";
-
 import { useCart } from "../Context/cart-context";
 import { Link, useLocation } from "react-router-dom";
+import { OrderModal } from "../Components/Order/OrderModal";
+import { useOrders } from "../Context/order-context";
 
 function CartPriceDetail() {
   const location = useLocation();
   const { productCart, totalPrice } = useCart();
+  const { setPrice } = useOrders();
+
   const [coupon, setCoupon] = useState("Try NewBee50 to get a 50% discount");
   const [couponInp, setCouponInp] = useState("");
   const [saved, setSaved] = useState("");
   const [newPrice, setNewPrice] = useState(totalPrice);
+  const [orderModal, setOrderModal] = useState(false);
+
+  setPrice(() => newPrice);
 
   function calDiscount(tp, disc) {
     let discountedPrice = 0;
@@ -45,7 +51,7 @@ function CartPriceDetail() {
   }
   return (
     <>
-          {location.pathname !== "/cart" && totalPrice > 600 ? (
+      {location.pathname !== "/cart" && totalPrice > 600 ? (
         <>
           <div className="order-flex flex flex-space-between align-item-center">
             <div className="order-detail">
@@ -114,27 +120,21 @@ function CartPriceDetail() {
           </div>
         </>
       ) : (
-        ""
+           <h6 className="text-sm color-secondary text-center">Shop for Rs. 699 to use different coupons!</h6>
+
       )}
       <div className="order-flex flex flex-space-between align-item-center">
         <div className="order-detail">
           <h3>Price ( {productCart.length} Items )</h3>
           <h3>Delivery Charges</h3>
-          {
-            saved && <h3>Coupon Discount</h3>
-
-          }
+          {saved && <h3>Coupon Discount</h3>}
         </div>
         <div className="price-detail">
           <h3>Rs. {totalPrice}</h3>
           <h3>{totalPrice > 1000 ? "Yay! you got free delivery" : "Rs. 40"}</h3>
-         {
-           saved && <h3>{saved}</h3>
-         } 
-
+          {saved && <h3>{saved}</h3>}
         </div>
       </div>
-
 
       <div className="order-flex flex flex-space-between align-item-center mb-1">
         <div className="order-detail">
@@ -156,14 +156,32 @@ function CartPriceDetail() {
         </div>
       </div>
       <div className="p-1 mb-1">
-
+        {location.pathname !== "/cart" ? (
+          <button
+            onClick={() => {
+              setOrderModal(true);
+            }}
+            className="btn btn-primary w-100"
+          >
+            Place Order{" "}
+          </button>
+        ) : (
           <Link to="/checkout" className="btn btn-primary w-100">
-          {location.pathname !== "/cart" ? (
-          "Place Order"
-        ) : (   "CheckOut"     )}
-
+            CheckOut{" "}
           </Link>
+        )}
       </div>
+      {orderModal && (
+        <div className="modal-div">
+          <OrderModal
+            closeModal={setOrderModal}
+            CTAone="Home"
+            CTAoneLink="/"
+            CTAtwo="Product"
+            CTAtwoLink="/product"
+          />
+        </div>
+      )}
     </>
   );
 }
