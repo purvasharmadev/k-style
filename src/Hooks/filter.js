@@ -28,10 +28,6 @@ function filterProduct() {
         : transformProducts.sort((a, b) => b.price - a.price);
   }
 
-  // Range
-  if (range) {
-    transformProducts = transformProducts.filter((item) => item.price <= range);
-  }
 
   // Conditions for individual category
 
@@ -46,6 +42,7 @@ function filterProduct() {
   // defining an array to store the items from the selected category returned by 'applyFilter
   const categoryFilter = [];
 
+
   // 'filterByCategory' is pushing each element returned by 'applyFilter' method to an array i.e categoryFilter
   function filterByCategory(categoryItem) {
     return categoryItem.forEach((ele) => {
@@ -57,6 +54,7 @@ function filterProduct() {
     const selectedCategory = applyFilter("Tshirt");
     filterByCategory(selectedCategory);
     transformProducts = categoryFilter;
+    console.log("transfromProducts ", transformProducts)
   }
 
   if (Hoodies) {
@@ -86,6 +84,13 @@ function filterProduct() {
     filterByCategory(selectedCategory);
     transformProducts = categoryFilter;
   }
+
+
+      // Range
+      if (range) {
+        transformProducts = transformProducts.filter((item) => item.price < range)
+    }
+  
 
   // Search
 
