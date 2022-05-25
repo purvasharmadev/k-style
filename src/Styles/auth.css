@@ -33,6 +33,13 @@
   padding-top: 1rem;
 }
 
+.guest-btn{
+  background: none;
+  font-size: 1rem;
+  color: var(--PRIMARY-COLOR);
+  border: none;
+}
+
 /* Media Queries */
 @media (max-width: 450px) {
   .form-container div {

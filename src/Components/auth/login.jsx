@@ -8,11 +8,16 @@ function Login() {
     useLogin();
 
   const guestLogin = () => {
-    setUserData((prev) => ({
-      ...prev,
+
+    // setUserData((prev) => ({
+    //   ...prev,
+      // email: "guestuser@test.com",
+      // password: "guestuser123",
+    // }));
+    setUserData({
       email: "guestuser@test.com",
       password: "guestuser123",
-    }));
+    })
   };
 
   function loginHandler(event) {
@@ -59,9 +64,9 @@ function Login() {
                 />
                 Remember Me
               </label>
-              <p onClick={() => guestLogin()} className="link pointer">
+              <button type="submit" onClick={() => guestLogin()} className="guest-btn pointer link">
                 Browse as guest
-              </p>
+              </button>
             </div>
 
             <button type="submit" className="btn btn-primary">
