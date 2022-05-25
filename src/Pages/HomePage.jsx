@@ -40,7 +40,7 @@ function HomePage() {
         />
         <Banner
           groupName="TXT"
-          groupImg="https://thehoneypop.com/wp-content/uploads/2020/04/txtfeature7.jpg"
+          groupImg="https://pbs.twimg.com/media/E0Jo-nrXsAIaSQk.jpg"
         />
       </div>
 
