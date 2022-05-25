@@ -64,7 +64,7 @@ function ProductFilter() {
           type="range"
           min="0"
           max="5000"
-          defaultValue="0"
+          value={filterState.range}
           id="priceRange"
           onChange={(e) => {
             filterDispatch({ type: "SORT_BY_RANGE", payload: e.target.value });
