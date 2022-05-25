@@ -52,10 +52,15 @@ function Nav() {
             <Link to="/wishlist" className="nav-link">
               <span className="badge badge-span">
                 <i className="fa fa-heart fa-x"></i>
-                <span className="badge-circle badge-right">
+                {
+                  ListItems.length > 0 ?
+                  <span className="badge-circle badge-right">
                   {" "}
                   {ListItems.length}
-                </span>
+                </span> :
+                ""
+                }
+
               </span>
             </Link>
           </li>
@@ -63,9 +68,12 @@ function Nav() {
             <Link to="/cart" className="nav-link link">
               <span className="badge badge-span">
                 <i className="fa fa-cart-plus fa-x"></i>
-                <span className="badge-circle badge-right">
+                {
+                  productCart.length > 0 ?
+                  <span className="badge-circle badge-right">
                   {productCart.length}
-                </span>
+                </span>:""
+                }
               </span>
             </Link>
           </li>
