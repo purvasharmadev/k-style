@@ -222,7 +222,6 @@ function CartPriceDetail() {
           ) : (
             <>
               <h3>
-                ye wala
                 Rs.
                 {totalPrice < 1000 ? totalPrice + 40 : totalPrice}
 
