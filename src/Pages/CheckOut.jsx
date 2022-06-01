@@ -3,12 +3,20 @@ import { Link } from "react-router-dom";
 import { useCart } from "../Context/cart-context";
 import { useOrders } from "../Context/order-context";
 import { CartPriceDetail } from "./CartPriceCard";
+import { getDataFromLocal } from "../Hooks/useLocalStorage";
 
 // Address
 function CheckOut() {
   const { productCart } = useCart();
   const { setSelectedAddress, setPaymentMode } = useOrders();
-  const address = JSON.parse(localStorage.getItem("address"));
+  // const address = JSON.parse(localStorage.getItem("address"));
+  const address = getDataFromLocal("address", [
+    {
+      fullName: "Jane Doe",
+      pNo: "092635100",
+      address: "Myungong street, block 3, Busan, South Korea",
+    },
+  ]);
   const [select, setSelect] = useState([]);
   const [display, setDisplay] = useState("block");
   const [height, setHeight] = useState("10px");
@@ -16,14 +24,9 @@ function CheckOut() {
     <>
       <div className="flex flex-space-evenly p-1 mb-1">
         <div>
-          <h2 className="m-top text-left">
-            {" "}
-            <span className="round">he</span> Step-1: Select an Address
-          </h2>
+          <h3 className="m-top text-left"> Step-1: Select an Address</h3>
 
           <div className="flex container">
-            <div style={{ height: height }} className="progressStick"></div>
-
             {select && select.length != 0 ? (
               <div className="card m-1">
                 <div className="header p-1">
@@ -89,32 +92,30 @@ function CheckOut() {
             )}
           </div>
 
-          <h2 className="text-left">
-            <span className="round">he</span> Step-2: Select An Payment Mode!
-          </h2>
+          <h3 className="text-left">Step-2: Select An Payment Mode!</h3>
           <div className="flex flex-space-between p-1">
             <label htmlFor="online">
-            <input 
-            onChange={()=>{
-              setPaymentMode("Online");
-            }}
-             name="online" type="radio"/>
-            <span className="text-normal color-primary bold">
-              Online          
-            </span>
+              <input
+                onChange={() => {
+                  setPaymentMode("Online");
+                }}
+                name="online"
+                type="radio"
+              />
+              <span className="text-normal color-primary bold">Online</span>
             </label>
             <label htmlFor="online">
-            <input
-          onChange={()=>{
-           setPaymentMode("COD");
-                        }}
-             name="online" type="radio"/>
-            <span className="text-normal color-primary bold">
-              Cash On Delivery
-            </span>
-
+              <input
+                onChange={() => {
+                  setPaymentMode("COD");
+                }}
+                name="online"
+                type="radio"
+              />
+              <span className="text-normal color-primary bold">
+                Cash On Delivery
+              </span>
             </label>
-
           </div>
         </div>
         <div className="m-top">
