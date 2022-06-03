@@ -5,9 +5,9 @@ import { useCart } from "../../Context/cart-context";
 
 
 function OrderModal({closeModal, CTAone, CTAtwo, CTAoneLink,CTAtwoLink }) {
-  const {productCart} = useCart();
-  const {selectedAddress,price,paymentMode} = useOrders();
-  console.log("price from modal ", price)
+  const {productCart,totalPrice} = useCart();
+  const {selectedAddress,paymentMode} = useOrders();
+  console.log("price from modal ", totalPrice)
   return (
     <div className="modal">
       <div className="modal-body">
@@ -32,7 +32,7 @@ function OrderModal({closeModal, CTAone, CTAtwo, CTAoneLink,CTAtwoLink }) {
           }
           <h3 className="p-1">Address : {selectedAddress.address}</h3>
           <div className="flex flex-space-between p-1">
-          <h3>Price: Rs. {price}</h3>
+          <h3>Price: Rs. {totalPrice < 1000 ? totalPrice + 40 : totalPrice}</h3>
           <h3>Payment Mode: {paymentMode}</h3>
           </div>
 

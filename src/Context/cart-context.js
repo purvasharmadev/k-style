@@ -130,6 +130,7 @@ function CartProvider({ children }) {
         productCart,
         addOrSubItem,
         totalPrice,
+        setTotalPrice
       }}
     >
       {children}

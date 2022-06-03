@@ -44,7 +44,11 @@ function Address() {
     fullName: "",
     pNo: "",
     address: "",
-    addressList: getDataFromLocal("address",[]),
+    addressList: getDataFromLocal("address",[{
+      fullName: "Jane Doe",
+      pNo: "092635100",
+      address: "Myungong street, block 3, Busan, South Korea",
+    }]),
     err: false,
     toggle: false,
     updateItem: null,

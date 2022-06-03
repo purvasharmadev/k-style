@@ -9,7 +9,7 @@ import { ProductProvider } from "./Context/context";
 import { WishListProvider } from "./Context/wishlist-context";
 import { CartProvider } from "./Context/cart-context";
 import { AuthProvider } from "./Context/auth-context";
-import {OrderProvider} from "./Context/order-context";
+import { OrderProvider } from "./Context/order-context";
 
 // Call make Server
 makeServer();
