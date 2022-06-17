@@ -64,6 +64,7 @@ function ProductFilter() {
           type="range"
           min="0"
           max="5000"
+          // value={filterState.range}
           value={filterState.range}
           id="priceRange"
           onChange={(e) => {
