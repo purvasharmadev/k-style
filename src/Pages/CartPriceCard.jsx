@@ -26,7 +26,7 @@ function loadRazorpay(url) {
 function CartPriceDetail() {
   const location = useLocation();
   const navigate = useNavigate()
-  const { productCart, totalPrice,setTotalPrice } = useCart();
+  const { productCart, totalPrice} = useCart();
   const { paymentMode } = useOrders();
 
   const [coupon, setCoupon] = useState("Try NewBee50 to get a 50% discount");
@@ -47,7 +47,9 @@ function CartPriceDetail() {
 
     const options = {
       key: "rzp_test_yo6LCZF4ChqwR2", // Enter the Key ID generated from the Dashboard
-      amount: String(totalPrice < 1000 ? (totalPrice + 40) * 100 : totalPrice * 100),      // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+       // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      amount:String(totalPrice === newPrice ? (totalPrice < 1000 ? (totalPrice + 40) * 100 : totalPrice * 100) : 
+        (newPrice < 1000 ? (newPrice + 40) * 100 : newPrice * 100)),
       currency: "INR",
       name: "K style",
       description: "Thank you for shopping with us ❤",
@@ -58,11 +60,10 @@ function CartPriceDetail() {
         const orderData = {
           orderId,
           products: [...productCart],
-          amount: String(totalPrice < 1000 ? (totalPrice + 40) * 100: totalPrice * 100),
+          amount:String(totalPrice === newPrice ? (totalPrice < 1000 ? (totalPrice + 40) * 100 : totalPrice * 100) : 
+          (newPrice < 1000 ? (newPrice + 40) * 100 : newPrice * 100)),
           paymentId: response.razorpay_payment_id,
         };
-        console.log("amount 2 ", amount)
-
         productCart.length = 0;
         useNotify("Order Successfully placed!",
         "order-success",
@@ -96,7 +97,7 @@ function CartPriceDetail() {
     discountedPrice = tp - saveMoney;
     setCoupon("Coupon successfully Applied!");
     setSaved(() => `You Saved Rs. ${Math.round(saveMoney)} !`);
-    setTotalPrice(() => Math.round(discountedPrice));
+    setNewPrice(() => Math.round(discountedPrice));
   }
 
   function couponInputHandler(e) {
@@ -217,7 +218,11 @@ function CartPriceDetail() {
         <div className="price-detail">
           {location.pathname !== "/cart" ? (
             <>
-              <h3> Rs. {totalPrice < 1000 ? totalPrice + 40 : totalPrice}</h3>
+              <h3>
+                Rs. 
+                {totalPrice === newPrice ? (totalPrice < 1000 ? totalPrice + 40 : totalPrice) : 
+                (newPrice < 1000 ? newPrice + 40 : newPrice)
+                } </h3>
             </>
           ) : (
             <>
