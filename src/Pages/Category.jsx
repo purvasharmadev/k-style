@@ -15,7 +15,7 @@ function Category(props) {
   };
 
   return (
-    <div onClick={navigateToProductsPage} className="card card-overlay">
+    <div onClick={navigateToProductsPage} className="card card-overlay pointer">
       <div className="card-header">
         <img className="img-responsive" src={props.img} alt={props.name} />
       </div>
