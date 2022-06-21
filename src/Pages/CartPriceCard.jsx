@@ -23,7 +23,7 @@ function loadRazorpay(url) {
   });
 }
 
-function CartPriceDetail() {
+function CartPriceDetail(props) {
   const location = useLocation();
   const navigate = useNavigate()
   const { productCart, totalPrice} = useCart();
@@ -237,7 +237,15 @@ function CartPriceDetail() {
       </div>
       <div className="p-1 mb-1">
         {location.pathname !== "/cart" ? (
+          <>
+      {
+        props.select  &&         
+        <h6 className="text-sm color-secondary text-center mb-0">
+          Add a address!
+      </h6>
+      }
           <button
+          disabled={props.select}
             onClick={() => {
               if (paymentMode === "COD") {
                 setOrderModal(true);
@@ -245,10 +253,14 @@ function CartPriceDetail() {
                 showRazorpay(newPrice);
               }
             }}
-            className="btn btn-primary w-100"
+            className = {props.select ? "btn btn-secondary w-100" : "btn btn-primary w-100"}
+            // className="btn btn-primary w-100"
           >
             Place Order{" "}
           </button>
+          </>
+          
+
         ) : (
           <Link to="/checkout" className="btn btn-primary w-100">
             CheckOut{" "}
