@@ -21,7 +21,7 @@ function OrderSummary() {
 
   return (
   <>
-  <div className='m-top text-center h-90 p-1'>
+<div className='m-top text-center p-1'>
   <h1>Order Summary</h1>
   <div className='container m-1'>
   <span className='flex flex-space-between p-1 m-1'>
@@ -50,13 +50,7 @@ function OrderSummary() {
     <h3 className='text-right'>Total Amount: Rs. {Number(orderState.amount)/100}</h3>
     </div>
   </div>
-
-
-
-
-
-
-  </div>
+</div>
   </>
   )
 }
