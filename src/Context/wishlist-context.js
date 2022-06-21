@@ -29,17 +29,17 @@ function WishListProvider({ children }) {
           console.log("res of wishlist ", res.data.wishlist);
           setListItems(res.data.wishlist);
           useNotify("Item added to wishlist!",
+          "wishlist-add-success",
           "success",
-           "wishlist-add-success",
-          );
+         );
         }
       }
     } catch (error) {
       console.error("error is: ", error.response.data.errors);
-      useNotify("Something went wrong ! unable to add item",
+      useNotify("Something went wrong! please try again later",
+      "wishlist-add-error",
       "error",
-       "wishlist-add-error",
-      );
+     );
     }
   }
 
@@ -54,17 +54,17 @@ function WishListProvider({ children }) {
       });
       if (res.status === 200) {
         setListItems(res.data.wishlist);
-        useNotify("Item removed from Wishlist!",
+        useNotify("Item removed from wishlist!",
+        "wishlist-remove-success",
         "error",
-         "wishlist-item-remove",
-        );
+       );
       }
     } catch (error) {
       console.error("error is :", error.response.data.errors);
-      useNotify("Something went wrong! unable to remove item!",
+      useNotify("Something went wrong! please try again later",
+      "wishlist-remove-error",
       "error",
-       "wishlist-remove-error",
-      );
+     );
     }
   }
 
