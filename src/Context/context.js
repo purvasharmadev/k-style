@@ -14,7 +14,7 @@ const ProductProvider = ({ children }) => {
   //  Filter Reducer
   const [filterState, filterDispatch] = useReducer(filterReducer, {
     sort: "",
-    range: 0,
+    range: 2500,
     rating: "",
     search_query: "",
     POCA: false,
