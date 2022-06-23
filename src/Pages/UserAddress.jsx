@@ -173,9 +173,9 @@ function Address() {
             </div>
           ) : (
             list &&
-            list.map((item) => {
+            list.map((item,index) => {
               return (
-                <div key={item._id} className="card m-1">
+                <div key={index} className="card m-1">
                   <div className="card-heading p-1 color-primary bold">
                     {item.fullName}
                   </div>
