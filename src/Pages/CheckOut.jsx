@@ -8,7 +8,7 @@ import { getDataFromLocal } from "../Hooks/useLocalStorage";
 // Address
 function CheckOut() {
   const { productCart } = useCart();
-  const { setSelectedAddress, setPaymentMode } = useOrders();
+  const { setSelectedAddress, setPaymentMode,paymentMode } = useOrders();
   // const address = JSON.parse(localStorage.getItem("address"));
   const address = getDataFromLocal("address", [
     {
@@ -19,7 +19,6 @@ function CheckOut() {
   ]);
   const [select, setSelect] = useState([]);
   const [display, setDisplay] = useState("block");
-  const [height, setHeight] = useState("10px");
   return (
     <>
       <div className="flex flex-space-evenly p-1 mb-1">
@@ -96,11 +95,12 @@ function CheckOut() {
           <div className="flex flex-space-between p-1">
             <label htmlFor="online">
               <input
+                name="payment"
+                type="radio"
+                checked={true}
                 onChange={() => {
                   setPaymentMode("Online");
                 }}
-                name="online"
-                type="radio"
               />
               <span className="text-normal color-primary bold">Online</span>
             </label>
@@ -109,7 +109,7 @@ function CheckOut() {
                 onChange={() => {
                   setPaymentMode("COD");
                 }}
-                name="online"
+                name="payment"
                 type="radio"
               />
               <span className="text-normal color-primary bold">
@@ -128,7 +128,7 @@ function CheckOut() {
               </div>
             );
           })}
-          <CartPriceDetail />
+          <CartPriceDetail select={select.length != 0 ? false : true} />
         </div>
       </div>
     </>

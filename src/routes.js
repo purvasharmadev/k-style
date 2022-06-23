@@ -7,7 +7,7 @@ import { Login } from "./Components/auth/login.jsx";
 import { SignUp } from "./Components/auth/signup.jsx";
 import { Wishlist } from "./Components/Wishlist/wishlist.jsx";
 import { Cart } from "./Components/Cart/cart.jsx";
-import {OrderSummary} from "./Pages/OrderSummary";
+import {OrderSummary} from "./Pages/OrderSummary.jsx";
 
 
 import { RequiresAuth } from "./Hooks/RequiresAuth";

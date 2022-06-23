@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 import { useCart } from "../Context/cart-context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { OrderModal } from "../Components/Order/OrderModal";
@@ -14,28 +14,24 @@ function loadRazorpay(url) {
     document.body.appendChild(script);
     script.onload = () => {
       resolve(true);
-
     };
     script.onerror = () => {
       resolve(false);
-
     };
   });
 }
 
-function CartPriceDetail() {
+function CartPriceDetail(props) {
   const location = useLocation();
   const navigate = useNavigate()
   const { productCart, totalPrice,removeFromCart} = useCart();
   const { paymentMode } = useOrders();
   const [coupon, setCoupon] = useState("Try NewBee50 to get a 50% discount");
-  const [couponInp, setCouponInp] = useState("");
   const [saved, setSaved] = useState("");
   const [newPrice, setNewPrice] = useState(totalPrice);
   const [orderModal, setOrderModal] = useState(false);
 
-
-  async function showRazorpay({amount}) {
+  async function showRazorpay({ amount }) {
     const res = await loadRazorpay(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -46,9 +42,16 @@ function CartPriceDetail() {
 
     const options = {
       key: "rzp_test_yo6LCZF4ChqwR2", // Enter the Key ID generated from the Dashboard
-       // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-      amount:String(totalPrice === newPrice ? (totalPrice < 1000 ? (totalPrice + 40) * 100 : totalPrice * 100) : 
-        (newPrice < 1000 ? (newPrice + 40) * 100 : newPrice * 100)),
+      // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      amount: String(
+        totalPrice === newPrice
+          ? totalPrice < 1000
+            ? (totalPrice + 40) * 100
+            : totalPrice * 100
+          : newPrice < 1000
+          ? (newPrice + 40) * 100
+          : newPrice * 100
+      ),
       currency: "INR",
       name: "K style",
       description: "Thank you for shopping with us ❤",
@@ -59,11 +62,18 @@ function CartPriceDetail() {
         const orderData = {
           orderId,
           products: [...productCart],
-          amount:String(totalPrice === newPrice ? (totalPrice < 1000 ? (totalPrice + 40) * 100 : totalPrice * 100) : 
-          (newPrice < 1000 ? (newPrice + 40) * 100 : newPrice * 100)),
+          amount: String(
+            totalPrice === newPrice
+              ? totalPrice < 1000
+                ? (totalPrice + 40) * 100
+                : totalPrice * 100
+              : newPrice < 1000
+              ? (newPrice + 40) * 100
+              : newPrice * 100
+          ),
           paymentId: response.razorpay_payment_id,
         };
-        console.log("order-data ", orderData.products)
+
         productCart.map((item)=>{
           removeFromCart(item)
         })
@@ -72,8 +82,8 @@ function CartPriceDetail() {
         "success",
        );
   
-        navigate("/order-summary", { state: orderData });
 
+        navigate("/order-summary", { state: orderData });
       },
       prefill: {
         name: "Gaurav Kumar",
@@ -91,7 +101,6 @@ function CartPriceDetail() {
     paymentObject.open();
   }
 
-  // setPrice(() => totalPrice);
 
   function calDiscount(tp, disc) {
     let discountedPrice = 0;
@@ -106,12 +115,10 @@ function CartPriceDetail() {
     setCoupon(e.target.value);
     setNewPrice(totalPrice);
     setSaved("");
-    setCouponInp("");
-    setCoupon("");
   }
 
-  function couponHandler() {
-    switch (coupon) {
+  function couponHandler(type) {
+    switch (type) {
       case "NewBee50":
         return calDiscount(totalPrice, 50);
 
@@ -139,10 +146,9 @@ function CartPriceDetail() {
                 className="mb-1"
                 onChange={couponInputHandler}
                 type="text"
-                value={couponInp ? couponInp : ""}
               />
               <span
-                onClick={couponHandler}
+                onClick={() => couponHandler(coupon)}
                 className="pointer btn-apply-coupon "
               >
                 <i className="fa fa-forward"></i>
@@ -161,8 +167,8 @@ function CartPriceDetail() {
               <div className="flex flex-wrap flex-space-evenly">
                 <button
                   onClick={() => {
-                    setCouponInp("TWICE20");
                     setCoupon("TWICE20");
+                    couponHandler("TWICE20");
                   }}
                   className="btn-coupon"
                 >
@@ -172,8 +178,8 @@ function CartPriceDetail() {
 
                 <button
                   onClick={() => {
-                    setCouponInp("NewBee50");
                     setCoupon("NewBee50");
+                    couponHandler("NewBee50");
                   }}
                   className="btn-coupon"
                 >
@@ -183,8 +189,8 @@ function CartPriceDetail() {
 
                 <button
                   onClick={() => {
-                    setCouponInp("BTS0613");
                     setCoupon("BTS0613");
+                    couponHandler("BTS0613");
                   }}
                   className="btn-coupon"
                 >
@@ -221,17 +227,21 @@ function CartPriceDetail() {
           {location.pathname !== "/cart" ? (
             <>
               <h3>
-                Rs. 
-                {totalPrice === newPrice ? (totalPrice < 1000 ? totalPrice + 40 : totalPrice) : 
-                (newPrice < 1000 ? newPrice + 40 : newPrice)
-                } </h3>
+                Rs.
+                {totalPrice === newPrice
+                  ? totalPrice < 1000
+                    ? totalPrice + 40
+                    : totalPrice
+                  : newPrice < 1000
+                  ? newPrice + 40
+                  : newPrice}{" "}
+              </h3>
             </>
           ) : (
             <>
               <h3>
                 Rs.
                 {totalPrice < 1000 ? totalPrice + 40 : totalPrice}
-
               </h3>
             </>
           )}
@@ -239,18 +249,30 @@ function CartPriceDetail() {
       </div>
       <div className="p-1 mb-1">
         {location.pathname !== "/cart" ? (
-          <button
-            onClick={() => {
-              if (paymentMode === "COD") {
-                setOrderModal(true);
-              } else {
-                showRazorpay(newPrice);
+          <>
+            {props.select && (
+              <h6 className="text-sm color-secondary text-center mb-0">
+                Add a address!
+              </h6>
+            )}
+            <button
+              disabled={props.select}
+              onClick={() => {
+                if (paymentMode === "COD") {
+                  setOrderModal(true);
+                } else {
+                  showRazorpay(newPrice);
+                }
+              }}
+              className={
+                props.select
+                  ? "btn btn-secondary w-100"
+                  : "btn btn-primary w-100"
               }
-            }}
-            className="btn btn-primary w-100"
-          >
-            Place Order{" "}
-          </button>
+            >
+              Place Order{" "}
+            </button>
+          </>
         ) : (
           <Link to="/checkout" className="btn btn-primary w-100">
             CheckOut{" "}

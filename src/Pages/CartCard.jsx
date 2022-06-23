@@ -68,14 +68,14 @@ function CartCard(props) {
             {ListItems.findIndex((i) => i.id === props.item.id) === -1 ? (
               <button
                 onClick={() => addToWishlistHandler(props.item)}
-                className="m-1 btn btn-secondary-outline"
+                className="m-1 btn btn-primary"
               >
                 Add to Wishlist
               </button>
             ) : (
               <button
                 onClick={() => removeFromWishlistHandler(props.item)}
-                className="m-1 btn btn-secondary-outline"
+                className="m-1 btn btn-secondary"
               >
                 Remove From Wishlist
               </button>

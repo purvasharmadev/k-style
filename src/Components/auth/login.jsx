@@ -1,23 +1,14 @@
 import { Link } from "react-router-dom";
 import { useLogin } from "../../Hooks/useLoginUser";
-import { useState } from "react";
 
 function Login() {
-  const [checked, setChecked] = useState(true);
-  const { error, setUserData, userData, errMsg, postUserLogin } =
-    useLogin();
+  const { error, setUserData, userData, errMsg, postUserLogin } = useLogin();
 
   const guestLogin = () => {
-
-    // setUserData((prev) => ({
-    //   ...prev,
-      // email: "guestuser@test.com",
-      // password: "guestuser123",
-    // }));
-    setUserData({
+     setUserData({
       email: "guestuser@test.com",
       password: "guestuser123",
-    })
+    });
   };
 
   function loginHandler(event) {
@@ -27,61 +18,51 @@ function Login() {
 
   return (
     <>
-        <div className="input-container mt-top">
-          <h2 className="form-heading">Login</h2>
-          {error && <p className="color-danger bold p-1"> * {errMsg}</p>}
+      <div className="input-container mt-top">
+        <h2 className="form-heading">Login</h2>
+        {error && <p className="color-danger bold p-1"> * {errMsg}</p>}
 
-          <form onSubmit={loginHandler} className="form-container">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              className={error ? "error" : ""}
-              name="email"
-              value={userData.email}
-              onChange={(e) =>
-                setUserData((prev) => ({ ...prev, email: e.target.value }))
-              }
-              placeholder="yourname@mail.com"
-            />
-            <label htmlFor="password">Password </label>
-            <input
-              type="password"
-              name="password"
-              value={userData.password}
-              onChange={(e) =>
-                setUserData((prev) => ({ ...prev, password: e.target.value }))
-              }
-              placeholder="********"
-            />
-            <div>
-              <label htmlFor="remember-me">
-                <input
-                  type="checkbox"
-                  name="remember-me"
-                  checked={checked}
-                  onChange={() => setChecked(!checked)}
-                  id="remember-me-check"
-                />
-                Remember Me
-              </label>
-              <button type="submit" onClick={() => guestLogin()} className="guest-btn pointer link">
-                Browse as guest
-              </button>
-            </div>
+        <form onSubmit={loginHandler} className="form-container">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            className={error ? "error" : ""}
+            name="email"
+            value={userData.email}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, email: e.target.value }))
+            }
+            placeholder="yourname@mail.com"
+          />
+          <label htmlFor="password">Password </label>
+          <input
+            type="password"
+            name="password"
+            value={userData.password}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, password: e.target.value }))
+            }
+            placeholder="********"
+          />
 
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
+          <button type="submit" className="btn btn-primary mb-0">
+            Login
+          </button>
+          <button
+            type="submit"
+            onClick={() => guestLogin()}
+            className="btn btn-secondary mb-0"
+          >
+            Browse as guest
+          </button>
 
-            <h4>
-              <Link to="/signup" className="link">
-                Create A New Account <i className="fa fa-arrow-right fa-x"></i>
-              </Link>
-            </h4>
-          </form>
-        </div>
-
-
+          <h4>
+            <Link to="/signup" className="link">
+              Create A New Account <i className="fa fa-arrow-right fa-x"></i>
+            </Link>
+          </h4>
+        </form>
+      </div>
     </>
   );
 }

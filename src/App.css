@@ -25,6 +25,11 @@
 }
 
 
+.mb-0{
+    margin-bottom: 10px;
+}
+
+
 .btn-apply-coupon{
     margin-left: -10px;
     border: 2px solid;
