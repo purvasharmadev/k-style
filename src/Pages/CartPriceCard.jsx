@@ -1,11 +1,10 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useCart } from "../Context/cart-context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { OrderModal } from "../Components/Order/OrderModal";
 import { useOrders } from "../Context/order-context";
 import { v4 as uuid } from "uuid";
 import { useNotify } from "../Hooks/useNotify";
-
 
 function loadRazorpay(url) {
   return new Promise((resolve) => {
@@ -31,6 +30,8 @@ function CartPriceDetail(props) {
   const [saved, setSaved] = useState("");
   const [newPrice, setNewPrice] = useState(totalPrice);
   const [orderModal, setOrderModal] = useState(false);
+  const [couponSelect, setCouponSelect] = useState("");
+
 
   async function showRazorpay({ amount }) {
     const res = await loadRazorpay(
@@ -95,20 +96,20 @@ function CartPriceDetail(props) {
     paymentObject.open();
   }
 
-
   function calDiscount(tp, disc) {
     let discountedPrice = 0;
     let saveMoney = (tp / 100) * disc;
     discountedPrice = tp - saveMoney;
-    setCoupon("Coupon successfully Applied!");
+    useNotify("Coupon successfully Applied!", "coupon-success", "success");
+    setCoupon("");
     setSaved(() => `You Saved Rs. ${Math.round(saveMoney)} !`);
     setNewPrice(() => Math.round(discountedPrice));
   }
 
   function couponInputHandler(e) {
-    setCoupon(e.target.value);
     setNewPrice(totalPrice);
     setSaved("");
+    setCouponSelect(e.target.value)
   }
 
   function couponHandler(type) {
@@ -123,7 +124,8 @@ function CartPriceDetail(props) {
         return calDiscount(totalPrice, 20);
 
       default:
-        return setCoupon("coupon not exists!");
+        return setCoupon("Promocode dosen't exists!")
+        ;
     }
   }
   return (
@@ -133,10 +135,9 @@ function CartPriceDetail(props) {
           <div className="order-flex flex flex-space-between align-item-center">
             <div className="order-detail">
               <h3 className="mb-1">Apply Coupon</h3>
-              <h3> </h3>
             </div>
             <div className="price-detail">
-              <input
+              {/* <input
                 className="mb-1"
                 onChange={couponInputHandler}
                 type="text"
@@ -146,25 +147,19 @@ function CartPriceDetail(props) {
                 className="pointer btn-apply-coupon "
               >
                 <i className="fa fa-forward"></i>
-              </span>
-              <p
-                className="bold color-primary"
-                style={{
-                  fontSize: "1rem",
-                  marginTop: "-15px",
-                  marginBottom: "10px",
-                }}
-              >
-                {coupon}
-              </p>
-
+              </span> */}
               <div className="flex flex-wrap flex-space-evenly">
                 <button
                   onClick={() => {
-                    setCoupon("TWICE20");
-                    couponHandler("TWICE20");
+                    setCouponSelect("TWICE20"),
+                      setCoupon("Congratulation! you got 20% off!"),
+                      couponHandler("TWICE20")
                   }}
-                  className="btn-coupon"
+                  className={
+                    couponSelect === "TWICE20"
+                      ? "btn-coupon selectBtn"
+                      : "btn-coupon"
+                  }
                 >
                   {" "}
                   TWICE20{" "}
@@ -172,10 +167,16 @@ function CartPriceDetail(props) {
 
                 <button
                   onClick={() => {
-                    setCoupon("NewBee50");
-                    couponHandler("NewBee50");
+                    setCouponSelect("NewBee50"),
+                    setCoupon("Congratulation! you got 50% off!"),
+                      couponHandler("NewBee50")
+
                   }}
-                  className="btn-coupon"
+                  className={
+                    couponSelect === "NewBee50"
+                      ? "btn-coupon selectBtn"
+                      : "btn-coupon"
+                  }
                 >
                   {" "}
                   NewBee50{" "}
@@ -183,18 +184,46 @@ function CartPriceDetail(props) {
 
                 <button
                   onClick={() => {
-                    setCoupon("BTS0613");
-                    couponHandler("BTS0613");
+                    setCouponSelect("BTS0613"),
+                    setCoupon("Congratulation! you got 50% off!"),
+                      couponHandler("BTS0613")
                   }}
-                  className="btn-coupon"
+                  className={
+                    couponSelect === "BTS0613"
+                      ? "btn-coupon selectBtn"
+                      : "btn-coupon"
+                  }
                 >
                   {" "}
                   BTS0613{" "}
                 </button>
+          
               </div>
-            </div>
+              {
+                  couponSelect !== "" ?
+                  <span
+                  onClick={() => {
+                      setNewPrice(totalPrice)
+                      setCouponSelect("")
+                      setSaved("")
+                      useNotify("Coupon Removed", "coupon-remove-success", "success");
+
+                  }}
+                  className="bold color-primary pointer"
+                  // style={{
+                  //   fontSize: "1rem",
+                  //   // marginTop: "-15px",
+                  //   marginBottom: "10px",
+                  // }}
+                >
+                  remove coupon
+                </span>:coupon
+                }
+             </div>
+            
+           
           </div>
-        </>
+                </>
       ) : (
         <h6 className="text-sm color-secondary text-center">
           Shop for Rs. 699 to use different coupons!
@@ -245,8 +274,8 @@ function CartPriceDetail(props) {
         {location.pathname !== "/cart" ? (
           <>
             {props.select && (
-              <h6 className="text-sm color-secondary text-center mb-0">
-                Add a address!
+              <h6 className="text-sm color-danger text-center mb-0">
+                Select an address to place an order!
               </h6>
             )}
             <button
@@ -260,7 +289,7 @@ function CartPriceDetail(props) {
               }}
               className={
                 props.select
-                  ? "btn btn-secondary w-100"
+                  ? "btn btn-secondary w-100 disabledBtn "
                   : "btn btn-primary w-100"
               }
             >

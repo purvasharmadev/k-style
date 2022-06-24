@@ -8,8 +8,7 @@ import { getDataFromLocal } from "../Hooks/useLocalStorage";
 // Address
 function CheckOut() {
   const { productCart } = useCart();
-  const { setSelectedAddress, setPaymentMode,paymentMode } = useOrders();
-  // const address = JSON.parse(localStorage.getItem("address"));
+  const { setSelectedAddress, setPaymentMode} = useOrders();
   const address = getDataFromLocal("address", [
     {
       fullName: "Jane Doe",
@@ -19,6 +18,7 @@ function CheckOut() {
   ]);
   const [select, setSelect] = useState([]);
   const [display, setDisplay] = useState("block");
+  const [checked,setChecked] = useState(true)
   return (
     <>
       <div className="flex flex-space-evenly p-1 mb-1">
@@ -54,12 +54,18 @@ function CheckOut() {
               address.map((item) => {
                 return (
                   <div
+                  onClick={() => {
+                    setSelectedAddress(item);
+                    setSelect(item);
+                    setDisplay("none");
+                  }}
+               
                     style={{ display: display }}
                     key={item._id}
-                    className="card m-1"
+                    className="card m-1 pointer"
                   >
                     <div className="card-header">
-                      <span
+                      {/* <span
                         onClick={() => {
                           setSelectedAddress(item);
                           setSelect(item);
@@ -70,7 +76,7 @@ function CheckOut() {
                       >
                         {" "}
                         ✔{" "}
-                      </span>
+                      </span> */}
                     </div>
                     <div className="card-heading p-1 color-primary bold">
                       {item.fullName}
@@ -97,9 +103,11 @@ function CheckOut() {
               <input
                 name="payment"
                 type="radio"
-                checked={true}
+                checked={checked}
                 onChange={() => {
                   setPaymentMode("Online");
+                  setChecked(true)
+
                 }}
               />
               <span className="text-normal color-primary bold">Online</span>
@@ -108,6 +116,7 @@ function CheckOut() {
               <input
                 onChange={() => {
                   setPaymentMode("COD");
+                  setChecked(false)
                 }}
                 name="payment"
                 type="radio"
@@ -128,7 +137,7 @@ function CheckOut() {
               </div>
             );
           })}
-          <CartPriceDetail select={select.length != 0 ? false : true} />
+          <CartPriceDetail select={select.length !== 0 ? false : true} />
         </div>
       </div>
     </>

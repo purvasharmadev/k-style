@@ -61,3 +61,12 @@
     border: 1px solid var(--PRIMARY-COLOR);
     margin-bottom: 10px;
 }
+
+.selectBtn{
+    background-color: green;
+    color:white;
+}
+
+.disabledBtn:hover{
+    cursor:not-allowed;
+}
