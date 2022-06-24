@@ -22,10 +22,9 @@ function loadRazorpay(url) {
 
 function CartPriceDetail(props) {
   const location = useLocation();
-  const navigate = useNavigate();
-  const { productCart, totalPrice } = useCart();
+  const navigate = useNavigate()
+  const { productCart, totalPrice,removeFromCart} = useCart();
   const { paymentMode } = useOrders();
-
   const [coupon, setCoupon] = useState("Try NewBee50 to get a 50% discount");
   const [saved, setSaved] = useState("");
   const [newPrice, setNewPrice] = useState(totalPrice);
@@ -75,8 +74,15 @@ function CartPriceDetail(props) {
           ),
           paymentId: response.razorpay_payment_id,
         };
-        productCart.length = 0;
-        useNotify("Order Successfully placed!", "order-success", "success");
+
+        productCart.map((item)=>{
+          removeFromCart(item)
+        })
+        useNotify("Order Successfully placed!",
+        "order-success",
+        "success",
+       );
+  
 
         navigate("/order-summary", { state: orderData });
       },
