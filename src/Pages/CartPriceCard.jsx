@@ -22,15 +22,14 @@ function loadRazorpay(url) {
 
 function CartPriceDetail(props) {
   const location = useLocation();
-  const navigate = useNavigate()
-  const { productCart, totalPrice,removeFromCart} = useCart();
+  const navigate = useNavigate();
+  const { productCart, totalPrice, removeFromCart } = useCart();
   const { paymentMode } = useOrders();
   const [coupon, setCoupon] = useState("Try NewBee50 to get a 50% discount");
   const [saved, setSaved] = useState("");
   const [newPrice, setNewPrice] = useState(totalPrice);
   const [orderModal, setOrderModal] = useState(false);
   const [couponSelect, setCouponSelect] = useState("");
-
 
   async function showRazorpay({ amount }) {
     const res = await loadRazorpay(
@@ -75,14 +74,14 @@ function CartPriceDetail(props) {
           paymentId: response.razorpay_payment_id,
         };
 
-        productCart.map((item)=>{
-          removeFromCart(item)
-        })
+        productCart.map((item) => {
+          removeFromCart(item);
+        });
         useNotify("Order Successfully placed!",
-        "order-success",
-        "success",
-       );
-  
+         "order-success",
+          "success");
+
+
 
         navigate("/order-summary", { state: orderData });
       },
@@ -112,11 +111,11 @@ function CartPriceDetail(props) {
     setNewPrice(() => Math.round(discountedPrice));
   }
 
-  function couponInputHandler(e) {
-    setNewPrice(totalPrice);
-    setSaved("");
-    setCouponSelect(e.target.value)
-  }
+  // function couponInputHandler(e) {
+  //   setNewPrice(totalPrice);
+  //   setSaved("");
+  //   setCouponSelect(e.target.value);
+  // }
 
   function couponHandler(type) {
     switch (type) {
@@ -130,8 +129,7 @@ function CartPriceDetail(props) {
         return calDiscount(totalPrice, 20);
 
       default:
-        return setCoupon("Promocode dosen't exists!")
-        ;
+        return setCoupon("Promocode dosen't exists!");
     }
   }
   return (
@@ -159,7 +157,7 @@ function CartPriceDetail(props) {
                   onClick={() => {
                     setCouponSelect("TWICE20"),
                       setCoupon("Congratulation! you got 20% off!"),
-                      couponHandler("TWICE20")
+                      couponHandler("TWICE20");
                   }}
                   className={
                     couponSelect === "TWICE20"
@@ -174,9 +172,8 @@ function CartPriceDetail(props) {
                 <button
                   onClick={() => {
                     setCouponSelect("NewBee50"),
-                    setCoupon("Congratulation! you got 50% off!"),
-                      couponHandler("NewBee50")
-
+                      setCoupon("Congratulation! you got 50% off!"),
+                      couponHandler("NewBee50");
                   }}
                   className={
                     couponSelect === "NewBee50"
@@ -191,8 +188,8 @@ function CartPriceDetail(props) {
                 <button
                   onClick={() => {
                     setCouponSelect("BTS0613"),
-                    setCoupon("Congratulation! you got 50% off!"),
-                      couponHandler("BTS0613")
+                      setCoupon("Congratulation! you got 50% off!"),
+                      couponHandler("BTS0613");
                   }}
                   className={
                     couponSelect === "BTS0613"
@@ -203,33 +200,29 @@ function CartPriceDetail(props) {
                   {" "}
                   BTS0613{" "}
                 </button>
-          
               </div>
-              {
-                  couponSelect !== "" ?
-                  <span
+              {couponSelect !== "" ? (
+                <span
                   onClick={() => {
-                      setNewPrice(totalPrice)
-                      setCouponSelect("")
-                      setSaved("")
-                      useNotify("Coupon Removed", "coupon-remove-success", "success");
-
+                    setNewPrice(totalPrice);
+                    setCouponSelect("");
+                    setSaved("");
+                    useNotify(
+                      "Coupon Removed",
+                      "coupon-remove-success",
+                      "success"
+                    );
                   }}
                   className="bold color-primary pointer"
-                  // style={{
-                  //   fontSize: "1rem",
-                  //   // marginTop: "-15px",
-                  //   marginBottom: "10px",
-                  // }}
                 >
                   remove coupon
-                </span>:coupon
-                }
-             </div>
-            
-           
-          </div>
-                </>
+                </span>
+              ) : (
+                <span>{coupon}</span>
+              )}
+            </div> 
+            </div>
+        </>
       ) : (
         <h6 className="text-sm color-secondary text-center">
           Shop for Rs. 699 to use different coupons!
