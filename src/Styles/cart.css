@@ -78,3 +78,7 @@ h3{
     background: none;
     color: var(--SECONDARY-COLOR);
 }
+
+.h-50{
+    height: 50vh;
+}
