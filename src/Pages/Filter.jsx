@@ -10,15 +10,14 @@ function ProductFilter() {
       <div className="flex flex-space-between">
         <h3 className="color-primary">Filter</h3>
         <span>
-          <a
-            href="#"
-            className="link"
+          <span
+            className="link pointer color-primary"
             onClick={() => {
               filterDispatch({ type: "CLEAR_FILTERS" });
             }}
           >
             CLEAR
-          </a>
+          </span>
         </span>
       </div>
 

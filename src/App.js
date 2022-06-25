@@ -9,10 +9,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // import nav,footer
-import {Nav} from "./Pages/Nav";
-import {Footer} from "./Pages/Footer";
-
-
+import { Nav } from "./Pages/Nav";
+import { Footer } from "./Pages/Footer";
 
 // toast-configuration method,
 // it is compulsory method.
@@ -20,11 +18,13 @@ toast.configure();
 
 function App() {
   return (
-    <div>
-      <Nav/>
+    <>
+      <Nav />
+      <div className="main-container">
       <URLRoutes />
-      <Footer/>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 

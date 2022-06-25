@@ -165,7 +165,7 @@ export const products = [
     title: "BTS Butter",
     group: "BTS",
     price: 4999,
-    featured: true,
+    featured: false,
     newArrival: true,
     categoryName: "Album",
     rating: 5,

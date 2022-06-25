@@ -9,9 +9,6 @@ import "../Styles/auth.css";
 // Import Components
 import { FeaturedProduct } from "../Components/Products/featured-product";
 import { CategoryList } from "../Components/Products/category-list";
-import { Banner } from "./Banner";
-import { Nav } from "../Pages/Nav";
-import { Footer } from "../Pages/Footer";
 
 // Import Context
 import { useAuth } from "../Context/auth-context";
@@ -20,30 +17,6 @@ function HomePage() {
   const { isLoggedIn } = useAuth();
   return (
     <>
-      {/* Group Banners */}
-      <div className="banner-container">
-        <Banner
-          groupName="BTS"
-          groupImg="https://variety.com/wp-content/uploads/2021/05/BTS_Butter-photo.jpg"
-        />
-        <Banner
-          groupName="BLANKPINK"
-          groupImg="https://wallpaperaccess.com/full/1099609.jpg"
-        />
-        <Banner
-          groupName="EXO"
-          groupImg="https://img.wallpapersafari.com/desktop/1536/864/43/71/eqZVlb.jpg"
-        />
-        <Banner
-          groupName="TWICE"
-          groupImg="https://pm1.narvii.com/7243/709ad04f96d04955409a35178eb0d045a6c5054cr1-1080-682v2_hq.jpg"
-        />
-        <Banner
-          groupName="TXT"
-          groupImg="https://pbs.twimg.com/media/E0Jo-nrXsAIaSQk.jpg"
-        />
-      </div>
-
       {/* Header */}
       <header>
         <div>
@@ -72,7 +45,6 @@ function HomePage() {
 
       {/*Featured product  */}
       <FeaturedProduct />
-
     </>
   );
 }

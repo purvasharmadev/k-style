@@ -46,7 +46,6 @@ nav {
 
 .nav-list input {
   width: 135%;
-  /* color: var(--TEXT-COLOR); */
   border: 1px solid var(--PRIMARY-COLOR);
 }
 
@@ -139,18 +138,18 @@ header {
       rgba(0, 0, 0, 0.178)
     ),
     url("https://variety.com/wp-content/uploads/2021/05/BTS_Butter-photo.jpg");
-  height: 100vh;
+  height:90vh;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: 50% center;
   max-inline-size: 100%;
   position: relative;
   text-align: center;
-  margin: auto;
+  margin: 4rem auto;
 }
 
 header div {
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 25%;
   text-align: center;
   color: var(--TEXT-COLOR);
@@ -173,11 +172,10 @@ header p {
 
 footer {
   background-color: var(--GRAY-COLOR);
-  height: 9.375rem;
-  bottom: 0;
+  /* bottom: 0; */
 }
 footer div {
-  height: 6.25rem;
+  height: 3.25rem;
 }
 
 .banner-container {
@@ -192,24 +190,28 @@ footer div {
   margin: 10px;
   height: 8rem;
   width: auto;
+
+}
+
+.banner-container .card-text{
+  font-size: 1.3rem;
 }
 
 .card-overlay .card-body {
-  background: none;
+  background-color:var(--GRAY-COLOR);
   padding: 0;
+  opacity: 0.7;
 }
 
 .card-overlay .card-text {
-  background-color: var(--BACKGROUND-COLOR);
-  width: 100%;
   text-align: center;
-  cursor: pointer;
-  opacity: 0.8;
+  color: var(--TEXT-COLOR);
+  font-weight: bold;
 }
 
 .featured-product-container {
   margin: 2rem auto;
-  max-width: 1550px;
+  max-width: calc(100/4);
   text-align: center;
 }
 
@@ -220,6 +222,9 @@ footer div {
 
 
 @media (max-width: 600px) {
+  :root{
+    font-size: 12px;
+  }
   nav {
     position: relative;
     flex-direction: row;
@@ -238,4 +243,5 @@ footer div {
   .nav-list input{
     width: 100%;
   }
+
 }
