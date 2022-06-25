@@ -52,7 +52,6 @@ function filterProduct() {
     const selectedCategory = applyFilter("Tshirt");
     filterByCategory(selectedCategory);
     transformProducts = categoryFilter;
-    console.log("transfromProducts ", transformProducts);
   }
 
   if (Hoodies) {

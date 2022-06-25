@@ -58,7 +58,7 @@ function CartPriceDetail(props) {
       image:
         "https://media.istockphoto.com/vectors/kpop0103-vector-id1183374758?k=20&m=1183374758&s=612x612&w=0&h=xoFlNAfWESsCUgbWHjfPhtNiLKdtk-ueBXscrTv_UNo=",
       handler: async (response) => {
-        const orderId = uuid();
+        const orderId = Math.floor(Math.random() * 100000) + 1;
         const orderData = {
           orderId,
           products: [...productCart],
@@ -224,9 +224,7 @@ function CartPriceDetail(props) {
             </div>
         </>
       ) : (
-        <h6 className="text-sm color-secondary text-center">
-          Shop for Rs. 699 to use different coupons!
-        </h6>
+""
       )}
       <div className="order-flex flex flex-space-between align-item-center">
         <div className="order-detail">

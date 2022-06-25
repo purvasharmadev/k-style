@@ -20,7 +20,9 @@ function App() {
   return (
     <>
       <Nav />
+      <div className="main-container">
       <URLRoutes />
+      </div>
       <Footer />
     </>
   );

@@ -70,3 +70,9 @@
 .disabledBtn:hover{
     cursor:not-allowed;
 }
+
+.main-container{
+    margin-top: 4rem;
+    height: 100%;
+    min-height: 100vh;
+}

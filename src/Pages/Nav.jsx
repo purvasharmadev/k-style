@@ -3,12 +3,15 @@ import { useProducts } from ".././Context/context";
 import { useCart } from ".././Context/cart-context";
 import { useList } from ".././Context/wishlist-context";
 import { useAuth } from "../Context/auth-context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 // import "../Styles/home-page.css";
 
 function Nav() {
   let navigateTo = useNavigate();
+  let loc = useLocation()
+
+  console.log("location ", loc)
 
   const { filterState, filterDispatch } = useProducts();
   const { productCart } = useCart();
@@ -31,17 +34,14 @@ function Nav() {
               type="text"
               className="icon color-primary"
               placeholder="search here"
-              value={filterState.search_query}
               onChange={(e) => {
                 filterDispatch(
                   {
                     type: "search_query",
                     payload: e.target.value,
                   },
-                  navigateTo("/product")
-                );
-
-                <Link to="/product">Link</Link>;
+                  navigateTo("/product",{replace:true}),
+                )
               }}
             />
           </li>
@@ -86,7 +86,7 @@ function Nav() {
           ) : (
             <li className="nav-item position-relative tooltip">
               <img
-                src="https://i.pinimg.com/736x/b8/03/78/b80378993da7282e58b35bdd3adbce89.jpg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy8DweMma-rWymXLF3izM3bHnpexvKQPeZSDaitnE2kfOmDpa9zEmbALDq5MybVA6dcWY&usqp=CAU"
                 className="avatar avatar-sm"
                 alt="profile-pic"
                 id="logout"

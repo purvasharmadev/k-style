@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import {useAuth} from "../Context/auth-context"
 function Footer() {
+  const {isLoggedIn} = useAuth()
     return ( 
         <>
               <footer>
@@ -12,9 +13,14 @@ function Footer() {
           <Link to="/product" className="nav-link link">
             Shop
           </Link>
-          <Link to="/login" className="nav-link link">
-            Login / Signup
-          </Link>
+          {
+            isLoggedIn ? 
+            ""
+           :
+           <Link to="/login" className="nav-link link">
+           Login / Signup
+         </Link>          }
+
           <Link to="/" className="nav-link link">
             Featured Products
           </Link>
