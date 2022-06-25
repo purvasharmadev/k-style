@@ -30,10 +30,10 @@ function OrderSummary() {
   </span>
   <div className='text-left p-1 border'>
       {
-        orderState.products.map((item)=>{
+        orderState.products.map((item,index)=>{
           return(
             <>
-            <div key={item.title} className='flex'>
+            <div key={index} className='flex'>
               <img className='p-1' src={item.img} height="150px" width="150px"/>
               <div className= 'orderSum p-1'>
               <h3>Product Name : {item.title}</h3>

@@ -8,8 +8,6 @@ import { ProductFilter } from "./Filter";
 // Component
 import { ProductList } from "../Components/Products/product-list";
 
-// import cart context
-import {useCart} from "../Context/cart-context"
 
 function Product() {
 

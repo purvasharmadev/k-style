@@ -51,7 +51,7 @@ function CheckOut() {
             )}
 
             {address && address.length > 0 ? (
-              address.map((item) => {
+              address.map((item,index) => {
                 return (
                   <div
                   onClick={() => {
@@ -61,8 +61,8 @@ function CheckOut() {
                   }}
                
                     style={{ display: display }}
-                    key={item._id}
                     className="card m-1 pointer"
+                    key={index}
                   >
                     <div className="card-header">
                       {/* <span
@@ -70,7 +70,6 @@ function CheckOut() {
                           setSelectedAddress(item);
                           setSelect(item);
                           setDisplay("none");
-                          setHeight("200px");
                         }}
                         className="card-badge"
                       >

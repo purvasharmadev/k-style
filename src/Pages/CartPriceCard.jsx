@@ -5,6 +5,7 @@ import { OrderModal } from "../Components/Order/OrderModal";
 import { useOrders } from "../Context/order-context";
 import { v4 as uuid } from "uuid";
 import { useNotify } from "../Hooks/useNotify";
+import {getDataFromLocal} from "../Hooks/useLocalStorage"
 
 function loadRazorpay(url) {
   return new Promise((resolve) => {
@@ -25,6 +26,10 @@ function CartPriceDetail(props) {
   const navigate = useNavigate();
   const { productCart, totalPrice, removeFromCart } = useCart();
   const { paymentMode } = useOrders();
+
+  const userInfo = getDataFromLocal("userInfo", "")
+  console.log("user Info ", userInfo)
+
   const [coupon, setCoupon] = useState("Try NewBee50 to get a 50% discount");
   const [saved, setSaved] = useState("");
   const [newPrice, setNewPrice] = useState(totalPrice);
@@ -86,9 +91,9 @@ function CartPriceDetail(props) {
         navigate("/order-summary", { state: orderData });
       },
       prefill: {
-        name: "Gaurav Kumar",
-        email: "gaurav.kumar@example.com",
-        contact: "9999999999",
+        name: userInfo.firstName,
+        email: userInfo.email,
+        contact:"092635100"
       },
       notes: {
         address: "Razorpay Corporate Office",
