@@ -1,17 +1,17 @@
-import { Footer } from "../../Pages/Footer";
-import { Nav } from "../../Pages/Nav";
+
 import { CartCard } from "../../Pages/CartCard";
 import { CartPriceDetail } from "../../Pages/CartPriceCard";
 import "../../Styles/cart.css";
 import { useCart } from "../../Context/cart-context";
+
+import emptycart from "../../Styles/Images/emptycart.svg"
 
 function Cart() {
   const { productCart } = useCart();
 
   return (
     <>
-      <Nav />
-      <h2 className="p-1 mt-top text-center">
+      <h2 className="p-1 mt-top text-center mb-1">
         My Cart <span className="highlight-text">({productCart.length})</span>
       </h2>
 
@@ -44,12 +44,11 @@ function Cart() {
           </div>
         </div>
       ) : (
-        <div className="input-container">
+        <div className="flex flex-column flex-space-center align-item-center h-50 m-1">
+          <img src={emptycart} alt="cart is empty" className="img-responsive mb-1" srcset="" />
           <h2 className="form-heading p-1">Cart is empty!!</h2>
         </div>
       )}
-
-      <Footer />
     </>
   );
 }

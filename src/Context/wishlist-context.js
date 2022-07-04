@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
-
+import {useNotify} from "../Hooks/useNotify"
 // creating a wishlist context, to use it acorss the webapp
 const WishListContext = createContext();
 
@@ -25,10 +25,21 @@ function WishListProvider({ children }) {
             },
           }
         );
-        setListItems(res.data.wishlist);
+        if (res.status === 201) {
+          console.log("res of wishlist ", res.data.wishlist);
+          setListItems(res.data.wishlist);
+          useNotify("Item added to wishlist!",
+          "wishlist-add-success",
+          "success",
+         );
+        }
       }
     } catch (error) {
-      console.log("error is: ", error);
+      console.error("error is: ", error.response.data.errors);
+      useNotify("Something went wrong! please try again later",
+      "wishlist-add-error",
+      "error",
+     );
     }
   }
 
@@ -41,9 +52,19 @@ function WishListProvider({ children }) {
           authorization: localStorage.getItem("token"),
         },
       });
-      setListItems(res.data.wishlist);
+      if (res.status === 200) {
+        setListItems(res.data.wishlist);
+        useNotify("Item removed from wishlist!",
+        "wishlist-remove-success",
+        "error",
+       );
+      }
     } catch (error) {
-      console.log("error is :", error);
+      console.error("error is :", error.response.data.errors);
+      useNotify("Something went wrong! please try again later",
+      "wishlist-remove-error",
+      "error",
+     );
     }
   }
 

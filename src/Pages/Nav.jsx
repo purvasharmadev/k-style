@@ -2,16 +2,21 @@ import { Link } from "react-router-dom";
 import { useProducts } from ".././Context/context";
 import { useCart } from ".././Context/cart-context";
 import { useList } from ".././Context/wishlist-context";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/auth-context";
+import { useNavigate,useLocation } from "react-router-dom";
 
 // import "../Styles/home-page.css";
 
 function Nav() {
   let navigateTo = useNavigate();
+  let loc = useLocation()
+
+  console.log("location ", loc)
 
   const { filterState, filterDispatch } = useProducts();
   const { productCart } = useCart();
   const { ListItems } = useList();
+  const { setIsLoggedIn, isLoggedIn } = useAuth();
 
   return (
     <>
@@ -29,17 +34,14 @@ function Nav() {
               type="text"
               className="icon color-primary"
               placeholder="search here"
-              value={filterState.search_query}
               onChange={(e) => {
                 filterDispatch(
                   {
                     type: "search_query",
                     payload: e.target.value,
                   },
-                  navigateTo("/product")
-                );
-
-                <Link to="/product">Link</Link>;
+                  navigateTo("/product",{replace:true}),
+                )
               }}
             />
           </li>
@@ -50,10 +52,15 @@ function Nav() {
             <Link to="/wishlist" className="nav-link">
               <span className="badge badge-span">
                 <i className="fa fa-heart fa-x"></i>
-                <span className="badge-circle badge-right">
+                {
+                  ListItems.length > 0 ?
+                  <span className="badge-circle badge-right">
                   {" "}
                   {ListItems.length}
-                </span>
+                </span> :
+                ""
+                }
+
               </span>
             </Link>
           </li>
@@ -61,36 +68,48 @@ function Nav() {
             <Link to="/cart" className="nav-link link">
               <span className="badge badge-span">
                 <i className="fa fa-cart-plus fa-x"></i>
-                <span className="badge-circle badge-right">
+                {
+                  productCart.length > 0 ?
+                  <span className="badge-circle badge-right">
                   {productCart.length}
-                </span>
+                </span>:""
+                }
               </span>
             </Link>
           </li>
-          {localStorage.getItem("token") === null ? (
+          {!isLoggedIn ? (
             <li className="nav-item">
               <Link to="/login" className="nav-link btn btn-primary">
                 Login
               </Link>
             </li>
           ) : (
-            <li class="nav-item position-relative tooltip">
+            <li className="nav-item position-relative tooltip">
               <img
-                src="https://i.pinimg.com/736x/b8/03/78/b80378993da7282e58b35bdd3adbce89.jpg"
-                class="avatar avatar-sm"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy8DweMma-rWymXLF3izM3bHnpexvKQPeZSDaitnE2kfOmDpa9zEmbALDq5MybVA6dcWY&usqp=CAU"
+                className="avatar avatar-sm"
                 alt="profile-pic"
                 id="logout"
               />
-              <span class="tooltip-text">
-                <a
-                  href="/"
+              <span className="flex flex-column tooltip-text">
+                <span
                   onClick={() => {
                     localStorage.clear();
+                    setIsLoggedIn(false);
+                    productCart.length = 0;
+                    ListItems.length = 0;
+                    navigateTo("/")
                   }}
-                  class="link"
+                  className="link link-hover "
                 >
                   Logout
-                </a>
+                </span>
+                <Link
+                  to="/profile"
+                  className="link color-white"
+                >
+                  Profile
+                </Link>
               </span>
             </li>
           )}

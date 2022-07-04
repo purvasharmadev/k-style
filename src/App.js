@@ -4,12 +4,27 @@ import URLRoutes from "./routes";
 // Import styles
 import "./App.css";
 
+// import toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// import nav,footer
+import { Nav } from "./Pages/Nav";
+import { Footer } from "./Pages/Footer";
+
+// toast-configuration method,
+// it is compulsory method.
+toast.configure();
 
 function App() {
   return (
-    <div>
+    <>
+      <Nav />
+      <div className="main-container">
       <URLRoutes />
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 

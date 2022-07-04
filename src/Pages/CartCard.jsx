@@ -39,21 +39,22 @@ function CartCard(props) {
           </h4>
           <h6 className="discount mb-1">{props.discount}</h6>
           <h6 className="mb-1">
+          <a
+              onClick={() => addOrSubHandler(props.item, "decrement")}
+              className="btn-icon pl-0"
+            >
+              <i className="fa fa-minus"></i>
+            </a>{" "}
+            <span className="counter-text">
+              {props.qty === 0 ? removeFromCartHandler(props.item) : props.qty}
+            </span>
             <a
               onClick={() => addOrSubHandler(props.item, "increment")}
               className="btn-icon pl-0 color-primary"
             >
               <i className="fa fa-plus"></i>
             </a>{" "}
-            <span className="counter-text">
-              {props.qty === 0 ? removeFromCartHandler(props.item) : props.qty}
-            </span>
-            <a
-              onClick={() => addOrSubHandler(props.item, "decrement")}
-              className="btn-icon pl-0"
-            >
-              <i className="fa fa-minus"></i>
-            </a>{" "}
+
           </h6>
 
           <div className="cart-btn">
@@ -68,14 +69,14 @@ function CartCard(props) {
             {ListItems.findIndex((i) => i.id === props.item.id) === -1 ? (
               <button
                 onClick={() => addToWishlistHandler(props.item)}
-                className="m-1 btn btn-secondary-outline"
+                className="m-1 btn btn-primary"
               >
                 Add to Wishlist
               </button>
             ) : (
               <button
                 onClick={() => removeFromWishlistHandler(props.item)}
-                className="m-1 btn btn-secondary-outline"
+                className="m-1 btn btn-secondary"
               >
                 Remove From Wishlist
               </button>

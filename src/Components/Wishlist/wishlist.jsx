@@ -1,17 +1,16 @@
 import React from "react";
-import { Nav } from "../../Pages/Nav";
-import { Footer } from "../../Pages/Footer";
 
+// Context
 import { useList } from "../../Context/wishlist-context";
-
 // Pages
 import { ProductCard } from "../../Pages/ProductCard";
+// Images
+import emptywishlist from "../../Styles/Images/emptywishlist.svg"
 
 function Wishlist() {
   const { ListItems } = useList();
   return (
     <>
-      <Nav />
 
       <h2 className="p-1 mt-top text-center">
         My Wishlist <span className="highlight-text">({ListItems.length})</span>
@@ -33,13 +32,16 @@ function Wishlist() {
               item={item}
             />
           ))
+
         ) : (
-          <div className="input-container">
-            <h2 className="form-heading p-1">Wishlist is empty!!</h2>
+          <div className="h-50">
+          <img src={emptywishlist} className="img-responsive" alt="empt" srcset="" />
+          <h2 className="form-heading p-1">wishlist is empty!!</h2>
           </div>
+        
         )}
-      </div>
-      <Footer />
+    </div>
+
     </>
   );
 }

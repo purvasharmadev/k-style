@@ -1,4 +1,6 @@
-/* @import url("https://glow-css.netlify.app/component.css"); */
+/* @import url(
+    https://glow-css.netlify.app/component.css
+); */
 
 .text-center{
     text-align: center;
@@ -6,4 +8,71 @@
 
 .text-left{
     text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+.link-hover{
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.pointer:hover{
+    cursor: pointer;
+}
+
+.tooltip .tooltip-text .link{
+    color: var(--TEXT-COLOR);
+}
+
+
+.mb-0{
+    margin-bottom: 10px;
+}
+
+
+.btn-apply-coupon{
+    margin-left: -10px;
+    border: 2px solid;
+    padding: 7px;
+    border-radius: 3px;
+
+}
+
+.btn-coupon{
+    padding: 2px;
+    background-color: var(--SECONDARY-COLOR);
+    color: aliceblue;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.mb-1{
+    margin-bottom: 2rem;
+}
+
+.h-90{
+    height:90vh;
+}
+
+.orderSum h3,h4{
+    margin-bottom: 10px;
+}
+.border{
+    border: 1px solid var(--PRIMARY-COLOR);
+    margin-bottom: 10px;
+}
+
+.selectBtn{
+    background-color: green;
+    color:white;
+}
+
+.disabledBtn:hover{
+    cursor:not-allowed;
+}
+
+.main-container{
+    margin-top: 4rem;
+    height: 100%;
+    min-height: 100vh;
 }

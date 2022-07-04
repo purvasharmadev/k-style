@@ -6,11 +6,11 @@ function Banner(props){
         <div className="card card-overlay">
           <img
             className="img-responsive"
-            src={props.groupImg}
-            alt={props.groupName}
+            src={props.img}
+            alt={props.name}
           />
           <div className="card-body">
-            <h1 className="card-text">{props.groupName}</h1>
+            <span className="card-text">{props.name}</span>
           </div>
         </div>        
         </>

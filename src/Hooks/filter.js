@@ -28,11 +28,6 @@ function filterProduct() {
         : transformProducts.sort((a, b) => b.price - a.price);
   }
 
-  // Range
-  if (range) {
-    transformProducts = transformProducts.filter((item) => item.price <= range);
-  }
-
   // Conditions for individual category
 
   // 'applyFilter' is used to get the array of items after applying the filter method
@@ -87,11 +82,16 @@ function filterProduct() {
     transformProducts = categoryFilter;
   }
 
+  // Range
+  if (range) {
+    transformProducts = transformProducts.filter((item) => item.price < range);
+  }
+
   // Search
 
   if (search_query) {
     transformProducts = Products.filter((item) =>
-      item.title.toLowerCase().includes(search_query)
+      item.title.toLowerCase().includes(search_query.toLowerCase())
     );
   }
 

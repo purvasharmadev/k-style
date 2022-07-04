@@ -8,17 +8,14 @@ import { ProductFilter } from "./Filter";
 // Component
 import { ProductList } from "../Components/Products/product-list";
 
-// import cart context
-import {useCart} from "../Context/cart-context"
 
 function Product() {
 
   return (
     <>
-      <Nav />
 
       {/* Product Content */}
-      <div class="flex mt-top smallScreenContainer">
+      <div className="flex mt-top smallScreenContainer">
         {/* Filter column */}
         <aside className="p-1">
           <ProductFilter />
@@ -30,7 +27,6 @@ function Product() {
         </main>
       </div>
 
-      <Footer />
     </>
   );
 }

@@ -24,7 +24,7 @@ function filterReducer(state, action) {
     case "CLEAR_FILTERS":
       return {
         sort: "",
-        range: 0,
+        range: 2500,
         rating: "",
         search_query: "",
         POCA: false,

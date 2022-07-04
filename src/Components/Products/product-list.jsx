@@ -30,12 +30,12 @@ function ProductList() {
 
       {/* products */}
       {newProducts.length !== 0 ? (
-        <div class="product-container m-1">
+        <div className="product-container m-1">
           {newProducts &&
-            newProducts.map((item) => (
+            newProducts.map((item,index) => (
               <>
                 <ProductCard
-                key={item.id}
+                key={item._id}
                 img={item.img}
                 categoryName={item.categoryName}
                 title={item.title}

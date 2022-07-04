@@ -29,29 +29,27 @@ function CategoryList() {
 
   return (
     <>
-      <div className="container m-auto">
-        <h2 className="m-head text-center">Categories</h2>
-        {/* Loader */}
-        {loader && (
-          <div
-            style={{ height: "21.875rem" }}
-            className="flex flex-space-center align-item-center container bold color-primary text-normal"
-          >
-            Loading.....
-          </div>
-        )}
-        <div className="product-container">
-          {/* category */}
-          {categories &&
-            categories.map((item) => (
-              <Category
-                key={item.categoryName}
-                name={item.categoryName}
-                img={item.categoryImg}
-                id={item.id}
-              />
-            ))}
+      <h2 className="m-head text-center">Categories</h2>
+      {/* Loader */}
+      {loader && (
+        <div
+          style={{ height: "10.875rem" }}
+          className="flex flex-space-center align-item-center container bold color-primary text-normal"
+        >
+          Loading.....
         </div>
+      )}
+      <div className="banner-container">
+        {/* category */}
+        {categories &&
+          categories.map((item) => (
+            <Category
+              key={item.categoryName}
+              name={item.categoryName}
+              img={item.categoryImg}
+              id={item.id}
+            />
+          ))}
       </div>
     </>
   );

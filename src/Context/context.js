@@ -1,17 +1,20 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer , useState } from "react";
 import { useGetProducts } from "../Hooks/useGetProducts";
 import { filterReducer } from "../Reducers/filterReducer";
+
 
 const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
+
+
   // getting products , error , loader by hook
   const { Products, errorMsg, loader } = useGetProducts();
 
   //  Filter Reducer
   const [filterState, filterDispatch] = useReducer(filterReducer, {
     sort: "",
-    range: 0,
+    range: 2500,
     rating: "",
     search_query: "",
     POCA: false,
@@ -22,7 +25,6 @@ const ProductProvider = ({ children }) => {
     Hoodies: false,
   });
 
-  // console.log("filterState: ", filterState);
   return (
     <ProductContext.Provider
       value={{ Products, loader, errorMsg, filterDispatch, filterState }}

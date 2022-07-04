@@ -2,29 +2,32 @@ import React from "react";
 import { useCart } from "../Context/cart-context";
 import { useList } from "../Context/wishlist-context";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useLogin } from "../Hooks/useLoginUser";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../Context/auth-context";
 
 function ProductCard(props) {
   let navigateTo = useNavigate();
-  const { token } = useLogin();
   const { addToCart, productCart } = useCart();
   const { addToWishlist, removeFromWishlist, ListItems } = useList();
+  const { isLoggedIn } = useAuth();
+  const currentLocation = useLocation();
 
   function addToCartHandler(item) {
-    if (token != null) {
-      addToCart(item);
-    } else {
-      navigateTo("/login");
-    }
+    isLoggedIn 
+      ? addToCart(item)
+      : navigateTo("/login", {
+          state: { from: currentLocation },
+          replace: true,
+        });
   }
 
   function addToWishlistHandler(item) {
-    if (token != null) {
-      addToWishlist(item);
-    } else {
-      navigateTo("/login");
-    }
+    isLoggedIn 
+      ? addToWishlist(item)
+      : navigateTo("/login", {
+          state: { from: currentLocation },
+          replace: true,
+        });
   }
 
   function removeFromWishlistHandler(item) {
@@ -32,7 +35,7 @@ function ProductCard(props) {
   }
 
   return (
-    <div className="card ecom-card">
+    <div  className="card ecom-card">
       <div className="card-header position-relative">
         {ListItems.findIndex((i) => i.id === props.item.id) === -1 ? (
           <span

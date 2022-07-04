@@ -10,15 +10,14 @@ function ProductFilter() {
       <div className="flex flex-space-between">
         <h3 className="color-primary">Filter</h3>
         <span>
-          <a
-            href="#"
-            className="link"
+          <span
+            className="link pointer color-primary"
             onClick={() => {
               filterDispatch({ type: "CLEAR_FILTERS" });
             }}
           >
             CLEAR
-          </a>
+          </span>
         </span>
       </div>
 
@@ -54,7 +53,7 @@ function ProductFilter() {
       {/* Price */}
       {/* Slider Not Working solution: https://stackoverflow.com/questions/36122034/jsx-react-html5-input-slider-doesnt-work */}
 
-      <h3 className="m-head">Price</h3>
+      <h3 className="m-head">Price: Rs. {filterState.range}  </h3>
       <div className="sliderContainer">
         <label htmlFor="priceRange" className="flex flex-space-between">
           <span>50</span> <span>2500</span>
@@ -62,9 +61,9 @@ function ProductFilter() {
         </label>
         <input
           type="range"
-          min="50"
+          min="0"
           max="5000"
-          defaultValue={filterState.range}
+          value={filterState.range}
           id="priceRange"
           onChange={(e) => {
             filterDispatch({ type: "SORT_BY_RANGE", payload: e.target.value });

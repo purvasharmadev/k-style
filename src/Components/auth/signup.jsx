@@ -1,37 +1,24 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../../Pages/Footer";
 import { Nav } from "../../Pages/Nav";
 import { useSignUp } from "../../Hooks/useSignupUser";
 
 function SignUp() {
-  const { sucess, error, setUserData, userData, postUserSignIn } = useSignUp();
+  const [checked, setChecked] = useState(true);
+  const { error, setUserData, userData, postUserSignIn } = useSignUp();
   function signUpHandler(event) {
-    console.log("signUphandler running........");
     event.preventDefault();
     postUserSignIn();
   }
 
   return (
     <>
-      <Nav />
-      {sucess ? (
-        <div className="input-container">
-          <h2 className="form-heading p-1">
-            You have been sucessfully register in!
-          </h2>
-          <h3 className="color-warning p-1">
-            Now you can login and add/delete items to cart and wishlist!
-          </h3>
-          <Link to="/login" className="link w-50 p-1">
-            Login Here !!
-          </Link>
-        </div>
-      ) : (
         <div className="input-container mt-top">
           <h2 className="form-heading">Signup</h2>
 
           <form onSubmit={signUpHandler} className="form-container">
-            <label htmlFor="first-name">first Name</label>
+            <label htmlFor="first-name">First Name</label>
             <input
               type="text"
               name="first-name"
@@ -78,7 +65,8 @@ function SignUp() {
                 type="checkbox"
                 name="terms-and-condition"
                 id="T-n-C-check "
-                checked={true}
+                checked={checked}
+                onChange={() => setChecked(!checked)}
               />
               I accept all terms and conditions
             </label>
@@ -95,8 +83,6 @@ function SignUp() {
             </h4>
           </form>
         </div>
-      )}
-      <Footer />
     </>
   );
 }

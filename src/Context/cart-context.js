@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
-
+import { useNotify } from "../Hooks/useNotify";
 // creating a cart context, to use it acorss the webapp
 const CartContext = createContext();
 
@@ -26,11 +26,22 @@ function CartProvider({ children }) {
             },
           }
         );
-        setProductCart(res.data.cart);
+        if (res.status === 201) {
+          setProductCart(res.data.cart);
+          useNotify("Item added to cart!",
+           "cart-add-success",
+           "success",
+          );
+        }
+
         setSucess(true);
       }
     } catch (error) {
-      console.log("error is: ", error);
+      console.error("error is: ", error.response.data.errors[0]);
+      useNotify("Something went wrong ! unable to add item",
+       "cart-add-error",
+       "error",
+      );
     }
   }
 
@@ -44,9 +55,19 @@ function CartProvider({ children }) {
           authorization: localStorage.getItem("token"),
         },
       });
-      setProductCart(res.data.cart);
+      if (res.status === 200) {
+        setProductCart(res.data.cart);
+        useNotify("Item removed from Cart!",
+         "Cart-item-remove",
+         "error",
+        );
+      }
     } catch (error) {
-      console.log("error is :", error);
+      console.error("error is :", error.response.data.errors[0]);
+      useNotify("Something went wrong! unable to remove item!",
+       "cart-remove-error",
+       "error",
+      );
     }
   }
 
@@ -67,9 +88,16 @@ function CartProvider({ children }) {
           },
         }
       );
-      setProductCart(res.data.cart);
+      if (res.status === 200) {
+        setProductCart(res.data.cart);
+        useNotify(`Item ${operationType} to cart!`,
+        "cart-itemCount-success",
+        "success",
+        );
+      }
     } catch (error) {
-      console.log("error is: ", error);
+      console.error("error is: ", error.response.data.errors);
+      useNotify("Something Went Wrong !","cart-item-error","error")
     }
   }
 
@@ -88,7 +116,7 @@ function CartProvider({ children }) {
 
   useEffect(() => {
     if (productCart.length > 0) {
-       return  productCart      
+      return productCart;
     }
   }, [productCart]);
 
@@ -102,6 +130,7 @@ function CartProvider({ children }) {
         productCart,
         addOrSubItem,
         totalPrice,
+        setTotalPrice
       }}
     >
       {children}

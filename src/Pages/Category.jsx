@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useProducts } from "../Context/context";
-import { useParams } from "react-router-dom";
+import {Banner} from "./Banner"
 
-// to={`/product/${props.id}`}
 
 function Category(props) {
   const navigateTo = useNavigate();
@@ -15,13 +14,8 @@ function Category(props) {
   };
 
   return (
-    <div onClick={navigateToProductsPage} className="card card-overlay">
-      <div className="card-header">
-        <img className="img-responsive" src={props.img} alt={props.name} />
-      </div>
-      <div className="card-body">
-        <h3 className="card-text">{props.name}</h3>
-      </div>
+    <div onClick={navigateToProductsPage} className="pointer">
+    <Banner name={props.name} img={props.img} />
     </div>
   );
 }
