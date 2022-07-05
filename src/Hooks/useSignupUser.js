@@ -22,7 +22,6 @@ function useSignUp() {
 
   // Api call
   async function postUserSignIn() {
-    console.log("userData is: ", userData);
     try {
       const res = await axios.post("/api/auth/signup", userData);
       res.headers["*/*"];
