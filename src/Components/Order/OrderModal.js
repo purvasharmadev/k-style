@@ -3,10 +3,16 @@ import { Link } from "react-router-dom";
 import { useOrders } from "../../Context/order-context";
 import { useCart } from "../../Context/cart-context";
 
-function OrderModal({ closeModal, CTAone, CTAtwo, CTAoneLink, CTAtwoLink }) {
-  const { productCart, totalPrice } = useCart();
+function OrderModal({ closeModal, CTAone, CTAtwo, CTAoneLink, CTAtwoLink, price }) {
+  const { productCart, totalPrice, removeFromCart } = useCart();
   const { selectedAddress, paymentMode } = useOrders();
-  console.log("price from modal ", totalPrice);
+
+
+  const removeFromCartHandler = ()=>{
+    productCart.map((item)=>{
+      removeFromCart(item)
+    })
+  }
   return (
     <div className="modal">
       <div className="modal-body">
@@ -30,17 +36,18 @@ function OrderModal({ closeModal, CTAone, CTAtwo, CTAoneLink, CTAtwoLink }) {
           <h3 className="p-1">Address : {selectedAddress.address}</h3>
           <div className="flex flex-space-between p-1">
             <h3>
-              Price: Rs. {totalPrice < 1000 ? totalPrice + 40 : totalPrice}
+              {/* Price: Rs. {totalPrice < 1000 ? totalPrice + 40 : totalPrice} */}
+              Price: Rs. {price}
             </h3>
             <h3>Payment Mode: {paymentMode}</h3>
           </div>
         </div>
         <div className="modal-footer">
-          <Link to={CTAoneLink} className="modal-btn link">
+          <Link onClick={removeFromCartHandler} to={CTAoneLink} className="modal-btn link">
             {" "}
             {CTAone}{" "}
           </Link>
-          <Link to={CTAtwoLink} className="modal-btn link">
+          <Link onClick={removeFromCartHandler} to={CTAtwoLink} className="modal-btn link">
             {" "}
             {CTAtwo}{" "}
           </Link>
