@@ -123,7 +123,7 @@ export const products = [
     newArrival: true,
     categoryName: "IdolFashion",
     rating: 3,
-    img: "http://review.zafcdn.com/upload/zafulcommunity/review/20181120/973FDBD8BBCD53E84C6E4B1467562596.jpg",
+    img:"https://i.pinimg.com/736x/bf/f3/f3/bff3f3e51b07d28d2b973dd55984839c.jpg",
   },
   {
     _id: uuid(),
