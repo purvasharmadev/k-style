@@ -34,6 +34,18 @@ function CartPriceDetail(props) {
   const [orderModal, setOrderModal] = useState(false);
   const [couponSelect, setCouponSelect] = useState("");
 
+
+
+  const finalPrice = () => {
+    return totalPrice === newPrice
+      ? totalPrice < 1000
+        ? totalPrice + 40
+        : totalPrice
+      : newPrice < 1000
+      ? newPrice + 40
+      : newPrice;
+  };
+
   async function showRazorpay({ amount }) {
     const res = await loadRazorpay(
       "https://checkout.razorpay.com/v1/checkout.js"
@@ -94,15 +106,7 @@ function CartPriceDetail(props) {
     setNewPrice(() => Math.round(discountedPrice));
   }
 
-  const finalPrice = () => {
-    return totalPrice === newPrice
-      ? totalPrice < 1000
-        ? totalPrice + 40
-        : totalPrice
-      : newPrice < 1000
-      ? newPrice + 40
-      : newPrice;
-  };
+
 
   function couponHandler(type) {
     switch (type) {
@@ -210,7 +214,13 @@ function CartPriceDetail(props) {
         </div>
         <div className="price-detail">
           <h3>Rs. {totalPrice}</h3>
-          <h3>{totalPrice > 1000 ? "Yay! you got free delivery" : "Rs. 40"}</h3>
+          {
+            location.pathname !== "/cart"?
+            <h3>{finalPrice() > 1000 ? "Yay! you got free delivery" : "Rs. 40"}</h3>
+:
+<h3>{totalPrice > 1000 ? "Yay! you got free delivery" : "Rs. 40"}</h3>
+
+          }
           {saved && <h3>{saved}</h3>}
         </div>
       </div>
