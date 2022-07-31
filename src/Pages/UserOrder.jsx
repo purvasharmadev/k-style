@@ -2,7 +2,6 @@
 function UserOrder() {
     const order = localStorage.getItem("order");
     const price = JSON.parse(localStorage.getItem("price"));
-    console.log("order map ", order)
   
     return (
       <div>

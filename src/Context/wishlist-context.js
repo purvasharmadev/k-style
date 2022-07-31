@@ -26,7 +26,6 @@ function WishListProvider({ children }) {
           }
         );
         if (res.status === 201) {
-          console.log("res of wishlist ", res.data.wishlist);
           setListItems(res.data.wishlist);
           useNotify("Item added to wishlist!",
           "wishlist-add-success",

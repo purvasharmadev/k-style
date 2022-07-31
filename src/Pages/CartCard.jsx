@@ -41,7 +41,7 @@ function CartCard(props) {
           <h6 className="mb-1">
           <a
               onClick={() => addOrSubHandler(props.item, "decrement")}
-              className="btn-icon pl-0"
+              className="btn-icon pl-0 pointer"
             >
               <i className="fa fa-minus"></i>
             </a>{" "}
@@ -50,7 +50,7 @@ function CartCard(props) {
             </span>
             <a
               onClick={() => addOrSubHandler(props.item, "increment")}
-              className="btn-icon pl-0 color-primary"
+              className="btn-icon pl-0 color-primary pointer"
             >
               <i className="fa fa-plus"></i>
             </a>{" "}

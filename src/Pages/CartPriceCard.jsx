@@ -3,9 +3,8 @@ import { useCart } from "../Context/cart-context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { OrderModal } from "../Components/Order/OrderModal";
 import { useOrders } from "../Context/order-context";
-import { v4 as uuid } from "uuid";
 import { useNotify } from "../Hooks/useNotify";
-import {getDataFromLocal} from "../Hooks/useLocalStorage"
+import { getDataFromLocal } from "../Hooks/useLocalStorage";
 
 function loadRazorpay(url) {
   return new Promise((resolve) => {
@@ -25,16 +24,27 @@ function CartPriceDetail(props) {
   const location = useLocation();
   const navigate = useNavigate();
   const { productCart, totalPrice, removeFromCart } = useCart();
-  const { paymentMode } = useOrders();
+  const { paymentMode,setPaymentMode } = useOrders();
 
-  const userInfo = getDataFromLocal("userInfo", "")
-  console.log("user Info ", userInfo)
+  const userInfo = getDataFromLocal("userInfo", "");
 
   const [coupon, setCoupon] = useState("Try NewBee50 to get a 50% discount");
   const [saved, setSaved] = useState("");
   const [newPrice, setNewPrice] = useState(totalPrice);
   const [orderModal, setOrderModal] = useState(false);
   const [couponSelect, setCouponSelect] = useState("");
+
+
+
+  const finalPrice = () => {
+    return totalPrice === newPrice
+      ? totalPrice < 1000
+        ? totalPrice + 40
+        : totalPrice
+      : newPrice < 1000
+      ? newPrice + 40
+      : newPrice;
+  };
 
   async function showRazorpay({ amount }) {
     const res = await loadRazorpay(
@@ -48,15 +58,7 @@ function CartPriceDetail(props) {
     const options = {
       key: "rzp_test_yo6LCZF4ChqwR2", // Enter the Key ID generated from the Dashboard
       // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-      amount: String(
-        totalPrice === newPrice
-          ? totalPrice < 1000
-            ? (totalPrice + 40) * 100
-            : totalPrice * 100
-          : newPrice < 1000
-          ? (newPrice + 40) * 100
-          : newPrice * 100
-      ),
+      amount: String(finalPrice() * 100),
       currency: "INR",
       name: "K style",
       description: "Thank you for shopping with us ❤",
@@ -67,33 +69,21 @@ function CartPriceDetail(props) {
         const orderData = {
           orderId,
           products: [...productCart],
-          amount: String(
-            totalPrice === newPrice
-              ? totalPrice < 1000
-                ? (totalPrice + 40) * 100
-                : totalPrice * 100
-              : newPrice < 1000
-              ? (newPrice + 40) * 100
-              : newPrice * 100
-          ),
+          amount: String(finalPrice()*100),
           paymentId: response.razorpay_payment_id,
         };
 
         productCart.map((item) => {
           removeFromCart(item);
         });
-        useNotify("Order Successfully placed!",
-         "order-success",
-          "success");
-
-
+        useNotify("Order Successfully placed!", "order-success", "success");
 
         navigate("/order-summary", { state: orderData });
       },
       prefill: {
         name: userInfo.firstName,
         email: userInfo.email,
-        contact:"092635100"
+        contact: "092635100",
       },
       notes: {
         address: "Razorpay Corporate Office",
@@ -116,11 +106,7 @@ function CartPriceDetail(props) {
     setNewPrice(() => Math.round(discountedPrice));
   }
 
-  // function couponInputHandler(e) {
-  //   setNewPrice(totalPrice);
-  //   setSaved("");
-  //   setCouponSelect(e.target.value);
-  // }
+
 
   function couponHandler(type) {
     switch (type) {
@@ -146,17 +132,6 @@ function CartPriceDetail(props) {
               <h3 className="mb-1">Apply Coupon</h3>
             </div>
             <div className="price-detail">
-              {/* <input
-                className="mb-1"
-                onChange={couponInputHandler}
-                type="text"
-              />
-              <span
-                onClick={() => couponHandler(coupon)}
-                className="pointer btn-apply-coupon "
-              >
-                <i className="fa fa-forward"></i>
-              </span> */}
               <div className="flex flex-wrap flex-space-evenly">
                 <button
                   onClick={() => {
@@ -225,11 +200,11 @@ function CartPriceDetail(props) {
               ) : (
                 <span>{coupon}</span>
               )}
-            </div> 
             </div>
+          </div>
         </>
       ) : (
-""
+        ""
       )}
       <div className="order-flex flex flex-space-between align-item-center">
         <div className="order-detail">
@@ -239,7 +214,13 @@ function CartPriceDetail(props) {
         </div>
         <div className="price-detail">
           <h3>Rs. {totalPrice}</h3>
-          <h3>{totalPrice > 1000 ? "Yay! you got free delivery" : "Rs. 40"}</h3>
+          {
+            location.pathname !== "/cart"?
+            <h3>{finalPrice() > 1000 ? "Yay! you got free delivery" : "Rs. 40"}</h3>
+:
+<h3>{totalPrice > 1000 ? "Yay! you got free delivery" : "Rs. 40"}</h3>
+
+          }
           {saved && <h3>{saved}</h3>}
         </div>
       </div>
@@ -253,13 +234,7 @@ function CartPriceDetail(props) {
             <>
               <h3>
                 Rs.
-                {totalPrice === newPrice
-                  ? totalPrice < 1000
-                    ? totalPrice + 40
-                    : totalPrice
-                  : newPrice < 1000
-                  ? newPrice + 40
-                  : newPrice}{" "}
+                {finalPrice()}
               </h3>
             </>
           ) : (
@@ -285,6 +260,7 @@ function CartPriceDetail(props) {
               onClick={() => {
                 if (paymentMode === "COD") {
                   setOrderModal(true);
+                  setPaymentMode('Online')
                 } else {
                   showRazorpay(newPrice);
                 }
@@ -308,6 +284,7 @@ function CartPriceDetail(props) {
         <div className="modal-div">
           <OrderModal
             closeModal={setOrderModal}
+            price={finalPrice()}
             CTAone="Home"
             CTAoneLink="/"
             CTAtwo="Product"

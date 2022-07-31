@@ -11,7 +11,6 @@ function Nav() {
   let navigateTo = useNavigate();
   let loc = useLocation()
 
-  console.log("location ", loc)
 
   const { filterState, filterDispatch } = useProducts();
   const { productCart } = useCart();

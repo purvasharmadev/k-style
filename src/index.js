@@ -4,6 +4,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { makeServer } from "./server";
 
+import ScrollToTop from "./Helper/scrollToTop";
 // Importing context
 import { ProductProvider } from "./Context/context";
 import { WishListProvider } from "./Context/wishlist-context";
@@ -28,7 +29,9 @@ ReactDOM.render(
             <WishListProvider>
               {/* Order Provider */}
               <OrderProvider>
-                  <App />
+                <ScrollToTop>
+                <App />
+                </ScrollToTop>
               </OrderProvider>
             </WishListProvider>
           </CartProvider>
