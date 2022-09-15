@@ -52,7 +52,7 @@ export const products = [
     newArrival: false,
     categoryName: "Hoodies",
     rating: 5,
-    img: "  https://cdn.shopify.com/s/files/1/0564/4320/7839/products/product-image-1127129174_2048x2048.jpg?v=1624199417",
+    img: "https://ih1.redbubble.net/image.2438895622.2177/ssrco,lightweight_hoodie,mens,101010:01c5ca27c6,front,square_product,x600-bg,f8f8f8.2.jpg",
   },
 
   {
